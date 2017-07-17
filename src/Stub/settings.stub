@@ -1,0 +1,9 @@
+{{BODY}}
+
+@push('css')
+    {{CSS}}
+@endpush
+
+@push('javascript')
+ {{JS}}
+@endpush

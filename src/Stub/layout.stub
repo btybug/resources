@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>BB Admin Framework</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    {!! HTML::style("resources/assets/css/admin.css?v=0.392") !!}
+    {!! HTML::style("resources/assets/css/dashboard-css.css?v=0.2") !!}
+    {!! HTML::style("resources/assets/css/admin-theme.css?v2.91",['id' => 'stylecolor']) !!}
+
+    <!--BB:CSS-->
+    {!! HTML::style(BBAdminThemeUrl(), array('id'=>'backend-css')) !!}
+    {!! HTML::style("resources/assets/css/core_styles.css") !!}
+    {{CSS}}
+
+    @yield('CSS')
+    @stack('css')
+
+            <!--BB:Theme-->
+
+    <!--BB:JS-->
+    @yield('HeaderJS')
+</head>
+<body {{BODY}}
+
+
+@include('modal')
+
+<input name="token" type="hidden" value="{{ csrf_token() }}" id="token"/>
+
+{!! HTML::script("resources/assets/js/jquery-2.1.4.min.js") !!}
+{!! HTML::script("resources/assets/js/jqueryui/js/jquery-ui.min.js") !!}
+{!! HTML::script("resources/assets/js/bootstrap.min.js") !!}
+{!! HTML::script("resources/assets/js/admin.js?v=6.0") !!}
+
+{!! HTML::script("resources/assets/js/bootbox/js/bootbox.min.js") !!}
+{!! HTML::script("resources/assets/js/media-lightbox.js?v.5") !!}
+{!! HTML::script("resources/assets/js/forms/multidata.js") !!}
+
+{{--{!! $javascript !!}--}}
+
+{{JS}}
+
+<script>
+    $(function(){
+        if($('[data-role="browseMedia"]').length > 0){
+            $('[data-role="browseMedia"]').media();
+        }
+    })
+</script>
+@yield('JS')
+
+@stack('javascript')
+@if(Session::has('message_code') && Session::pull('message_code') == 200)
+    <script>
+        $(function() {
+            $('#message-modal .modal-body').html("{!! Session::pull('success_mes') !!}");
+            $('#message-modal').modal();
+        });
+    </script>
+@endif
+
+</body>
+</html>
