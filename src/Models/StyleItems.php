@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Resources\Models;
+namespace Sahakavatar\Resources\Models;
 
 use App\helpers\helpers;
 use Illuminate\Database\Eloquent\Model;

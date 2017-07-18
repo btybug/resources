@@ -1,4 +1,4 @@
-<?php namespace App\Modules\Resources\Interfases;
+<?php namespace Sahakavatar\Resources\Interfases;
 
 /**
  * Interface vInterfase

@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\Resources\Models\Files;
+namespace Sahakavatar\Resources\Models\Files;
 use App\Models\Templates\Units;
 use File;
 /**

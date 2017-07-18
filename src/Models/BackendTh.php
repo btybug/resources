@@ -8,7 +8,7 @@
  *  * Time: 10:44 PM
  *
  */
-namespace App\Modules\Resources\Models;
+namespace Sahakavatar\Resources\Models;
 
 use File;
 

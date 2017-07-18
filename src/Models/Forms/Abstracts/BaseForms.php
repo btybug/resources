@@ -1,4 +1,4 @@
-<?php namespace App\Modules\Resources\Models\Forms\Abstracts;
+<?php namespace Sahakavatar\Resources\Models\Forms\Abstracts;
 
 /**
  * Created by PhpStorm.

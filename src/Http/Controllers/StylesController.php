@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Resources\Http\Controllers;
+namespace Sahakavatar\Resources\Http\Controllers;
 
 use App\helpers\dbhelper;
 use App\helpers\helpers;

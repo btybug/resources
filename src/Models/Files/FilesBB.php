@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Resources\Models\Files;
+namespace Sahakavatar\Resources\Models\Files;
 use App\Models\Templates\Eloquent\Abstractions\TplModel;
 use App\Models\Templates\Units;
 use App\Modules\Resources\Models\Files\traits\FilesPreview;

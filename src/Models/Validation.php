@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Resources\Models;
+namespace Sahakavatar\Resources\Models;
 
 use App\Modules\Packeges\Interfases\vInterfase;
 use File,Validator;

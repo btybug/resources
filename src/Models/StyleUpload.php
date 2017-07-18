@@ -9,7 +9,7 @@
  *
  */
 
-namespace App\Modules\Resources\Models;
+namespace Sahakavatar\Resources\Models;
 
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;

@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\Resources\Http\Controllers;
+namespace Sahakavatar\Resources\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use App\Modules\Resources\Models\Styles;

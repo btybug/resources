@@ -1,4 +1,4 @@
-<?php namespace App\Modules\Resources\Http\Controllers;
+<?php namespace Sahakavatar\Resources\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Templates\Units;

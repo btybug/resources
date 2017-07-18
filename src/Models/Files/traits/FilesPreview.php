@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\Resources\Models\Files\traits;
+namespace Sahakavatar\Resources\Models\Files\traits;
 /**
  * Created by PhpStorm.
  * User: shojan

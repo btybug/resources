@@ -1,4 +1,4 @@
-<?php namespace App\Modules\Resources\Models;
+<?php namespace Sahakavatar\Resources\Models;
 
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;

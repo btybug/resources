@@ -1,4 +1,4 @@
-<?php namespace App\Modules\Resources\Http\Controllers\Api;
+<?php namespace Sahakavatar\Resources\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
