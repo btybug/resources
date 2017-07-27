@@ -2,8 +2,8 @@
 namespace Sahakavatar\Resources\Models;
 
 use Illuminate\Http\Request;
-use App\helpers\helpers;
-use App\helpers\dbhelper;
+use Sahakavatar\Cms\Helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
 use File,
     Zipper;
 

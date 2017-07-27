@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;
-use App\helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
 use App\Models\MenuData;
 use App\Models\Templates\Widgets;
 use Zipper,

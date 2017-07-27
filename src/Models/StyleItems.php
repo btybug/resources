@@ -11,7 +11,7 @@
 
 namespace Sahakavatar\Resources\Models;
 
-use App\helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
 use Illuminate\Database\Eloquent\Model;
 
 /**
