@@ -1,6 +1,6 @@
 <?php
 namespace Sahakavatar\Resources\Models\Files;
-use App\Models\Templates\Units;
+use Sahakavatar\Cms\Models\Templates\Units;
 use File;
 /**
  * Created by PhpStorm.

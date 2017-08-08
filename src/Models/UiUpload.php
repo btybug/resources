@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;
 use Sahakavatar\Cms\Helpers\helpers;
 use App\Models\MenuData;
-use App\Models\Templates\Widgets;
+use Sahakavatar\Cms\Models\Widgets;
 use Zipper,
     File;
 

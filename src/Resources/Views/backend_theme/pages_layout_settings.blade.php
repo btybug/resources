@@ -34,5 +34,5 @@
 
 @stop
 @section('JS')
-    {!! HTML::script('/resources/assets/js/UiElements/content-layout-settings.js') !!}
+    {!! HTML::script('js/UiElements/content-layout-settings.js') !!}
 @stop

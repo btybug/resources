@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'units'])
+@extends('cms::layouts.mTabs',['index'=>'units'])
 <!-- Nav tabs -->
 @section('tab')
     {!! HTML::style('app/Modules/Resources/Resources/assets/css/new-store.css') !!}
@@ -113,8 +113,8 @@ left: 40%;
 </style>
 @stop
 @section('JS')
-    {!! HTML::script("resources/assets/js/UiElements/bb_styles.js?v.5") !!}
-    {!! HTML::script('resources/assets/js/dropzone/js/dropzone.js') !!}
+    {!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
+    {!! HTML::script('js/dropzone/js/dropzone.js') !!}
     <script>
         Dropzone.options.myAwesomeDropzone = {
             init: function() {

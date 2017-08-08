@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;
 use Sahakavatar\Cms\Helpers\helpers;
 use App\Models\MenuData;
-use App\Models\Templates\Templates as Tpl;
+use Sahakavatar\Cms\Models\Templates as Tpl;
 use Zipper,File;
 
 /**

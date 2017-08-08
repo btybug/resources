@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Modules\Users\Models\Roles;
 use App\Modules\Users\User;
 use App\Modules\Resources\Models\TemplateVariations as TemplateVariations;
-use App\Models\Templates\Widgets;
+use Sahakavatar\Cms\Models\Widgets;
 use App\Modules\Resources\Models\UiUpload;
 use App\Modules\Resources\Models\Validation as validateUpl;
 use Session,File,Zipper,View,Resources;

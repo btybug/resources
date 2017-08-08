@@ -10,8 +10,8 @@
  */
 
 namespace Sahakavatar\Resources\Models\Files;
-use App\Models\Templates\Eloquent\Abstractions\TplModel;
-use App\Models\Templates\Units;
+use Sahakavatar\Cms\Models\Eloquent\Abstractions\TplModel;
+use Sahakavatar\Cms\Models\Templates\Units;
 use App\Modules\Resources\Models\Files\traits\FilesPreview;
 use File;
 /**

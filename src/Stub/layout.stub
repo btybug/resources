@@ -14,13 +14,13 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    {!! HTML::style("resources/assets/css/admin.css?v=0.392") !!}
-    {!! HTML::style("resources/assets/css/dashboard-css.css?v=0.2") !!}
-    {!! HTML::style("resources/assets/css/admin-theme.css?v2.91",['id' => 'stylecolor']) !!}
+    {!! HTML::style("/css/admin.css?v=0.392") !!}
+    {!! HTML::style("/css/dashboard-css.css?v=0.2") !!}
+    {!! HTML::style("/css/admin-theme.css?v2.91",['id' => 'stylecolor']) !!}
 
     <!--BB:CSS-->
     {!! HTML::style(BBAdminThemeUrl(), array('id'=>'backend-css')) !!}
-    {!! HTML::style("resources/assets/css/core_styles.css") !!}
+    {!! HTML::style("/css/core_styles.css") !!}
     {{CSS}}
 
     @yield('CSS')
@@ -38,14 +38,14 @@
 
 <input name="token" type="hidden" value="{{ csrf_token() }}" id="token"/>
 
-{!! HTML::script("resources/assets/js/jquery-2.1.4.min.js") !!}
-{!! HTML::script("resources/assets/js/jqueryui/js/jquery-ui.min.js") !!}
-{!! HTML::script("resources/assets/js/bootstrap.min.js") !!}
-{!! HTML::script("resources/assets/js/admin.js?v=6.0") !!}
+{!! HTML::script("js/jquery-2.1.4.min.js") !!}
+{!! HTML::script("js/jqueryui/js/jquery-ui.min.js") !!}
+{!! HTML::script("js/bootstrap.min.js") !!}
+{!! HTML::script("js/admin.js?v=6.0") !!}
 
-{!! HTML::script("resources/assets/js/bootbox/js/bootbox.min.js") !!}
-{!! HTML::script("resources/assets/js/media-lightbox.js?v.5") !!}
-{!! HTML::script("resources/assets/js/forms/multidata.js") !!}
+{!! HTML::script("js/bootbox/js/bootbox.min.js") !!}
+{!! HTML::script("js/media-lightbox.js?v.5") !!}
+{!! HTML::script("js/forms/multidata.js") !!}
 
 {{--{!! $javascript !!}--}}
 

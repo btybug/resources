@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\ExceptionCaster;
 use Sahakavatar\Cms\Helpers\helpers;
 use App\Models\MenuData;
-use App\Models\Templates\Units;
+use Sahakavatar\Cms\Models\Templates\Units;
 use Zipper,
     File;
 

@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'assets'])
+@extends('cms::layouts.mTabs',['index'=>'assets'])
         <!-- Nav tabs -->
 @section('tab')
     <div class="row list_222">
@@ -104,7 +104,7 @@
     {!! HTML::style('app/Modules/Resources/Resources/assets/css/style_cube.css') !!}
 @stop
 @section('JS')
-    {!! HTML::script('resources/assets/js/dropzone/js/dropzone.js') !!}
+    {!! HTML::script('js/dropzone/js/dropzone.js') !!}
     <script>
         Dropzone.options.myAwesomeDropzone = {
             init: function () {

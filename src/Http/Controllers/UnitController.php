@@ -1,7 +1,7 @@
 <?php namespace Sahakavatar\Resources\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Templates\Units;
+use Sahakavatar\Cms\Models\Templates\Units;
 use App\Modules\Resources\Models\Files\FileUpload;
 use App\Modules\Resources\Models\TemplateVariations as TemplateVariations;
 use App\Modules\Resources\Models\UnitUpload;
@@ -23,7 +23,7 @@ class UnitController extends Controller
 
     private $types;
 
-    public function __construct (\App\Modules\Modules\Plugins\Gears\Models\UnitUpload $unitUpload, validateUpl $validateUpl)
+    public function __construct (\Sahakavatar\Modules\Models\Plugins\Gears\Models\UnitUpload $unitUpload, validateUpl $validateUpl)
     {
         $this->upload = new $unitUpload;
         $this->validateUpl = new $validateUpl;

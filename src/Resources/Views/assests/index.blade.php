@@ -1,4 +1,4 @@
-@extends('layouts.mTabs',['index'=>'assets'])
+@extends('cms::layouts.mTabs',['index'=>'assets'])
 
 @section('tab')
    {{--{!! Breadcrumbs::render('core_assets') !!}--}}
