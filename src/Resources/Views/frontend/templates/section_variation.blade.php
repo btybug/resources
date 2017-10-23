@@ -8,64 +8,68 @@
     </ul>
 
     <div class="tab-content">
-        @foreach($sections as $section)
-                <!-- Tab panes -->
-        <div role="tabpanel" class="tab-pane" id="{!! $section->blog_slug !!}">
-            <div class="col-md-8 p-10">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            Variations for [{{ $template->title }}] template
+    @foreach($sections as $section)
+        <!-- Tab panes -->
+            <div role="tabpanel" class="tab-pane" id="{!! $section->blog_slug !!}">
+                <div class="col-md-8 p-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                Variations for [{{ $template->title }}] template
 
-                            @if(!empty($variation))
-                                <a href="{{URL('/admin/templates/variations/'.$template->id)}}"
-                                   class="btn btn-xs btn-success pull-right" style="color:#fff;">New Variation</a>
-                            @else
-                                <a href="javascript:;" data-section="{{ $section->id }}"
-                                   class="btn btn-xs btn-success pull-right new-variation-section" style="color:#fff;">New
-                                    Variation</a>
-                            @endif
-                        </h4>
-                    </div>
-                    <div class="panel-body">
-                        <table width="100%" class="table table-bordered m-0">
-                            <thead>
-                            <tr class="bg-black-darker text-white">
-                                <th>Variation Name</th>
-                                <th width="120">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            @foreach($section->variations as $variation_data)
-                                @if($variation_data->template_id == $template->id)
-                                    <tr>
-                                        <td><a href="#" class="editable" data-type="text"
-                                               data-pk="{{$variation_data->id}}"
-                                               data-title="Template Variation Title">{{$variation_data->variation_name}}</a>
-                                        </td>
-                                      
-                                        <td>
-                                            <a href="/admin/templates/mapping/{{$variation_data->id}}"
-                                               class="btn btn-primary btn-xs">&nbsp;<i class="fa fa-desktop"></i>&nbsp;
-                                            </a>
-
-                                            <a href="/admin/templates/variations/{{$template->id}}/{{$variation_data->id}}"
-                                               class="btn btn-info btn-xs">&nbsp;<i class="fa fa-pencil"></i>&nbsp;</a>
-
-                                            @if($variation_data->type != 'core')
-                                                <a href="/admin/templates/delete-variation/{{$variation_data->id}}/{{$template->id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete')"> &nbsp;<i class="fa fa-trash"></i> &nbsp;</a>
-                                            @endif
-                                        </td>
-                                    </tr>
+                                @if(!empty($variation))
+                                    <a href="{{URL('/admin/templates/variations/'.$template->id)}}"
+                                       class="btn btn-xs btn-success pull-right" style="color:#fff;">New Variation</a>
+                                @else
+                                    <a href="javascript:;" data-section="{{ $section->id }}"
+                                       class="btn btn-xs btn-success pull-right new-variation-section"
+                                       style="color:#fff;">New
+                                        Variation</a>
                                 @endif
-                            @endforeach
-                            </tbody>
-                        </table>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <table width="100%" class="table table-bordered m-0">
+                                <thead>
+                                <tr class="bg-black-darker text-white">
+                                    <th>Variation Name</th>
+                                    <th width="120">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($section->variations as $variation_data)
+                                    @if($variation_data->template_id == $template->id)
+                                        <tr>
+                                            <td><a href="#" class="editable" data-type="text"
+                                                   data-pk="{{$variation_data->id}}"
+                                                   data-title="Template Variation Title">{{$variation_data->variation_name}}</a>
+                                            </td>
+
+                                            <td>
+                                                <a href="/admin/templates/mapping/{{$variation_data->id}}"
+                                                   class="btn btn-primary btn-xs">&nbsp;<i class="fa fa-desktop"></i>&nbsp;
+                                                </a>
+
+                                                <a href="/admin/templates/variations/{{$template->id}}/{{$variation_data->id}}"
+                                                   class="btn btn-info btn-xs">&nbsp;<i class="fa fa-pencil"></i>&nbsp;</a>
+
+                                                @if($variation_data->type != 'core')
+                                                    <a href="/admin/templates/delete-variation/{{$variation_data->id}}/{{$template->id}}"
+                                                       class="btn btn-danger btn-xs"
+                                                       onclick="return confirm('Are you sure to delete')"> &nbsp;<i
+                                                                class="fa fa-trash"></i> &nbsp;</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
 
         <div class="col-md-4 p-10 new-variation @if(empty($variation)) hide @endif">

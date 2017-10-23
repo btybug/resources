@@ -1,13 +1,13 @@
 <?php
+
 namespace Sahakavatar\Resources\Models;
 
+use File;
 use Illuminate\Http\Request;
-use Sahakavatar\Cms\Helpers\helpers;
-use Sahakavatar\Cms\Helpers\helpers;
-use File,
-    Zipper;
+use Zipper;
 
-class Manage {
+class Manage
+{
 
     public $helper;
     private $sf = NULL; // sample Folders Path
@@ -24,7 +24,8 @@ class Manage {
     /**
      * Manage constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->helpers = new helpers;
         $this->dhelper = new dbhelper();
         $this->sf = config('paths.samples') . "themes/THEME";
@@ -40,7 +41,8 @@ class Manage {
         $this->css_main = config('paths.css_main');
     }
 
-    public function buildTheme($data, $parent) {
+    public function buildTheme($data, $parent)
+    {
         $slug = str_slug($data['name'], "-");
         if ($data['parent_id'] != '') {
             $data['parent'] = $parent->slug;
@@ -58,7 +60,8 @@ class Manage {
         return $slug;
     }
 
-    public function upload(Request $request) {
+    public function upload(Request $request)
+    {
         $req = $request->all();
         $section = $req['group_id'];
         $path = $this->$section;
@@ -90,7 +93,8 @@ class Manage {
         return $response;
     }
 
-    public function extractZip($full_name, $name, $path) {
+    public function extractZip($full_name, $name, $path)
+    {
 
         Zipper::make($this->tf . $full_name)->extractTo($this->tf . $name);
         if (File::exists($this->tf . $name . "/" . $name)) {
@@ -116,27 +120,30 @@ class Manage {
         return $response;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return ['draft' => 'Draft', 'pending' => 'Pending Review', 'published' => 'Published'];
     }
 
-    public function getVisible() {
+    public function getVisible()
+    {
         return ['yes' => 'Yes', 'no' => 'NO'];
     }
 
     /**
      * @return array
      */
-    public function assestCols(){
+    public function assestCols()
+    {
         $form_fields = [
             'id' => 'ID',
             'title' => 'Title',
             'site_link' => 'Site Link',
-            'created_at'=>'Created Date',
+            'created_at' => 'Created Date',
             'action' => 'Action'
         ];
         $columns = $this->dhelper->getColumnsJson($form_fields);
-        return ['form_fields'=>$form_fields,'columns'=>$columns];
+        return ['form_fields' => $form_fields, 'columns' => $columns];
     }
 
 }

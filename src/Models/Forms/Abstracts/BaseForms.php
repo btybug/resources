@@ -12,14 +12,14 @@ use Validator;
 
 abstract class BaseForms
 {
+    public $filds;
+    public $rules;
     private $id;
     private $type;
     private $legend;
     private $function;
     private $dir;
     private $path;
-    public $filds;
-    public $rules;
     private $rule_types = [
         'text' => ['required', 'unique:table', 'max:num', 'min:num', 'numeric', 'alpha', 'alpha_dash', 'email', 'alpha_num', 'url', 'string'],
         'password' => ['required', 'max:num', 'min:num', 'confirmed'],
@@ -32,19 +32,25 @@ abstract class BaseForms
         $this->dir = base_path('forms/');
     }
 
-    public function scopeFind($id)
+    public static function __callStatic($name, $arguments)
     {
-        $this->path = $this->dir . $id . ".json";
-        if (File::exists($this->path)) {
-            $json = json_decode(File::get($this->path), true);
-            $this->id = $json['id'];
-            $this->type = $json['type'];
-            $this->legend = $json['legend'];
-            $this->function = $json['function'];
-            $this->filds = $json['filds'];
-            $this->rules = $json['rules'];
+        $method = 'scope' . ucfirst($name);
+        $_this = new static;
+        if (method_exists($_this, $method)
+            && is_callable(array($_this, $method))
+        ) {
+            return call_user_func_array([$_this, 'scope' . ucfirst($name)], $arguments);
         }
-        return $this;
+    }
+
+    public function __call($name, $arguments)
+    {
+        $method = 'scope' . ucfirst($name);
+        if (method_exists($this, $method)
+            && is_callable(array($this, $method))
+        ) {
+            return call_user_func_array([$this, 'scope' . ucfirst($name)], $arguments);
+        }
     }
 
     protected function scopeRender($id = null)
@@ -118,6 +124,21 @@ abstract class BaseForms
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         };
+    }
+
+    public function scopeFind($id)
+    {
+        $this->path = $this->dir . $id . ".json";
+        if (File::exists($this->path)) {
+            $json = json_decode(File::get($this->path), true);
+            $this->id = $json['id'];
+            $this->type = $json['type'];
+            $this->legend = $json['legend'];
+            $this->function = $json['function'];
+            $this->filds = $json['filds'];
+            $this->rules = $json['rules'];
+        }
+        return $this;
     }
 
     private function scopeFieldsLists($id = null)
@@ -221,7 +242,7 @@ abstract class BaseForms
         $json = json_encode($json, true);
 
         $html = '<div class="col-md-12 form-group">';
-        $html .= "<textarea readonly class='form-control' id='jaon-data' data-id=$id data-json='".$json."' >$json</textarea>";
+        $html .= "<textarea readonly class='form-control' id='jaon-data' data-id=$id data-json='" . $json . "' >$json</textarea>";
         $html .= '<div>';
         return $html;
     }
@@ -234,10 +255,10 @@ abstract class BaseForms
             $data = json_decode($data, true);
             if ($request->has('rules')) {
                 $rules = $request->get('rules');
-                foreach($rules as $k=>$v){
-                    foreach($v as $key=>$value){
-                        if(empty($value)){
-                         unset($rules[$k][$key]) ;
+                foreach ($rules as $k => $v) {
+                    foreach ($v as $key => $value) {
+                        if (empty($value)) {
+                            unset($rules[$k][$key]);
                         }
                     }
                 }
@@ -249,27 +270,6 @@ abstract class BaseForms
 
         }
         return 'Error';
-    }
-
-    public function __call($name, $arguments)
-    {
-        $method = 'scope' . ucfirst($name);
-        if (method_exists($this, $method)
-            && is_callable(array($this, $method))
-        ) {
-            return call_user_func_array([$this, 'scope' . ucfirst($name)], $arguments);
-        }
-    }
-
-    public static function __callStatic($name, $arguments)
-    {
-        $method = 'scope' . ucfirst($name);
-        $_this = new static;
-        if (method_exists($_this, $method)
-            && is_callable(array($_this, $method))
-        ) {
-            return call_user_func_array([$_this, 'scope' . ucfirst($name)], $arguments);
-        }
     }
 
 }

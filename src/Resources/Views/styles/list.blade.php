@@ -1,5 +1,5 @@
 @extends('cms::layouts.mTabs',['index'=>'assets'])
-        <!-- Nav tabs -->
+<!-- Nav tabs -->
 @section('tab')
     <div class="row list_222">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 cms_module_list module_list_1">
@@ -58,9 +58,9 @@
                     <h4 class="modal-title" id="myModalLabel">Create new Sub</h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'/admin/resources/styles/add-sub','class' => 'form-horizontal']) !!}
-                    {!! Form::hidden('type',null,['id' => 'class-type']) !!}
-                            <!-- Text input-->
+                {!! Form::open(['url'=>'/admin/resources/styles/add-sub','class' => 'form-horizontal']) !!}
+                {!! Form::hidden('type',null,['id' => 'class-type']) !!}
+                <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="name">Sub Name</label>
                         <div class="col-md-4">
@@ -168,7 +168,7 @@
                 $('#addSub').modal();
             });
 
-            $('.list-unstyled').on('click', '.tpl-left-items', function(e) {
+            $('.list-unstyled').on('click', '.tpl-left-items', function (e) {
                 e.preventDefault();
                 var main_type = $(this).attr('main-type');
                 var sub = $(this).attr('sub');
@@ -186,7 +186,7 @@
                     url: '/admin/resources/styles/render-styles',
                     data: {
                         main_type: main_type,
-                        url:pageurl+'?rel=tab',
+                        url: pageurl + '?rel=tab',
                         sub: sub
                     },
                     dataType: 'json',
@@ -211,8 +211,8 @@
                     },
                     type: 'POST'
                 });
-                if(pageurl!=window.location){
-                    window.history.pushState({path:pageurl},'',pageurl);
+                if (pageurl != window.location) {
+                    window.history.pushState({path: pageurl}, '', pageurl);
                 }
                 return false;
             });

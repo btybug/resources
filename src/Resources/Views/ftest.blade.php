@@ -13,10 +13,10 @@
             </div>
         </div>
         <div class="col-md-12">
-        <div class="col-md-4">
-            {!! \App\Modules\Resources\Models\Forms\Forms::validatorJson("5784b8740b4e7") !!}
-            <div class="col-md-4"><input type="button" value="Save" id="save_json" class="btn btn-success"></div>
-        </div>
+            <div class="col-md-4">
+                {!! \App\Modules\Resources\Models\Forms\Forms::validatorJson("5784b8740b4e7") !!}
+                <div class="col-md-4"><input type="button" value="Save" id="save_json" class="btn btn-success"></div>
+            </div>
         </div>
     </div>
     <hr>

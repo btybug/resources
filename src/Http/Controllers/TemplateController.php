@@ -14,23 +14,26 @@ namespace Sahakavatar\Resources\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\Taxonomy;
-use Sahakavatar\Cms\Models\Templates;
-use Sahakavatar\Cms\Models\TplVariations;
-use Sahakavatar\Cms\Models\UiElements;
 use App\Models\Themes\Themes;
 use App\Modules\Create\Models\Corepage;
-use Illuminate\Http\Request;
-use App\Modules\Settings\Models\Template;
-use Sahakavatar\Cms\Helpers\helpers;
-use Sahakavatar\Cms\Helpers\helpers;
-use App\Modules\Settings\Models\TemplateVariations;
-use Sahakavatar\Cms\Models\Templates as Tpl;
-use App\Modules\Settings\Models\TplUpload;
 use App\Modules\Resources\Models\Validation as validateUpl;
-use Input, Session, File, Zipper, View, Auth,
-    Validator,
-    Datatables,
-    Resources;
+use App\Modules\Settings\Models\Template;
+use App\Modules\Settings\Models\TemplateVariations;
+use App\Modules\Settings\Models\TplUpload;
+use Datatables;
+use File;
+use Illuminate\Http\Request;
+use Input;
+use Resources;
+use Sahakavatar\Cms\Helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
+use Sahakavatar\Cms\Models\Templates as Tpl;
+use Sahakavatar\Cms\Models\TplVariations;
+use Sahakavatar\Cms\Models\UiElements;
+use Session;
+use Validator;
+use View;
+use Zipper;
 
 /**
  * Class TemplateController
@@ -116,7 +119,6 @@ class TemplateController extends Controller
         $templates = Tpl::where('general_type', 'header')->run();
         return view('resources::frontend.templates.templates', compact(['templates', 'types']));
     }
-
 
 
     public function postNewType(Request $request)
@@ -324,17 +326,16 @@ class TemplateController extends Controller
     }
 
 
-
     public function TemplatePerviewIframe($id, $page_id = null, $edit = false)
     {
 
         $page = Corepage::find($page_id);
-        $theme=Themes::active();
+        $theme = Themes::active();
         if ($page) {
-            $page_data = @json_decode($page->data_option,true);
-            $htmlBody = $theme->renderLayout($id,['settings'=>$page_data]);
+            $page_data = @json_decode($page->data_option, true);
+            $htmlBody = $theme->renderLayout($id, ['settings' => $page_data]);
         }
-        return view('resources::frontend.templates.ifpreview', compact(['htmlBody','id', 'edit']));
+        return view('resources::frontend.templates.ifpreview', compact(['htmlBody', 'id', 'edit']));
     }
 
     public function TemplatePerviewEditIframe($id)
@@ -370,7 +371,7 @@ class TemplateController extends Controller
         $settings = (isset($variation->settings) && $variation->settings) ? $variation->settings : [];
         $slug = explode('.', $id);
         $ui = Templates::find($slug[0]);
-        $html = $ui->render(['settings' => $settings,'edit'=>true]);
+        $html = $ui->render(['settings' => $settings, 'edit' => true]);
         return \Response::json(['html' => $html, 'error' => false]);
     }
 
@@ -392,6 +393,7 @@ class TemplateController extends Controller
 
 
     // Variations
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -429,6 +431,7 @@ class TemplateController extends Controller
 
         return redirect()->back();
     }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -635,12 +638,13 @@ class TemplateController extends Controller
         return view('resources::frontend.templates.new_templates', compact(['templates']));
     }
 
-    protected function getDataTpl($id){
+    protected function getDataTpl($id)
+    {
         $slug = explode('.', $id);
         $ui = Tpl::find($slug[0]);
         $variation = Tpl::findVariation($id);
         if (!$variation) return false;
         $settings = (isset($variation->settings) && $variation->settings) ? $variation->settings : [];
-        return ['tpl'=>$ui,'variation'=>$variation,'settings'=>$settings];
+        return ['tpl' => $ui, 'variation' => $variation, 'settings' => $settings];
     }
 }

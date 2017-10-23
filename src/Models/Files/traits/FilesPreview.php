@@ -1,4 +1,5 @@
 <?php
+
 namespace Sahakavatar\Resources\Models\Files\traits;
 /**
  * Created by PhpStorm.
@@ -24,7 +25,7 @@ trait FilesPreview
             $array['main_type'] = $type['main_type'];
             $array['type'] = $type['type'];
             $array['enabled'] = true;
-            $array['file_path'] = str_replace(".".$type['ext'],'.json',$type['file_path']);
+            $array['file_path'] = str_replace("." . $type['ext'], '.json', $type['file_path']);
             $array['image'] = $type['image'];
             $fobject->attributes = $array;
             $all[] = $fobject;
@@ -48,7 +49,7 @@ trait FilesPreview
                 $array['main_type'] = $file['main_type'];
                 $array['type'] = $file['type'];
                 $array['enabled'] = true;
-                $array['file_path'] = str_replace(".".$file['ext'],'.json',$file['file_path']);
+                $array['file_path'] = str_replace("." . $file['ext'], '.json', $file['file_path']);
                 $array['image'] = $file['image'];
                 $fobject->attributes = $array;
                 $all[] = $fobject;
@@ -84,18 +85,19 @@ trait FilesPreview
         $array['main_type'] = $file['main_type'];
         $array['type'] = $file['type'];
         $array['enabled'] = true;
-        $array['file_path'] = str_replace(".".$file['ext'],'.json',$file['file_path']);
+        $array['file_path'] = str_replace("." . $file['ext'], '.json', $file['file_path']);
         $array['image'] = $file['image'];
         $fobject->attributes = $array;
         return $fobject;
     }
 
-    public function getColumns(){
+    public function getColumns()
+    {
         $columns = [];
         $data = json_decode(\File::get($this->file_path));
-        if(count($data)){
+        if (count($data)) {
             $item = array_first($data);
-            foreach ($item as $k => $v){
+            foreach ($item as $k => $v) {
                 $columns[$k] = $k;
             }
         }
@@ -106,17 +108,17 @@ trait FilesPreview
     {
         $columns = [];
         $file_data = json_decode(\File::get($this->file_path));
-        if(count($file_data)){
-            foreach ($file_data as $item){
-                foreach ($item as $k => $v){
-                    if($k == $data['key']){
+        if (count($file_data)) {
+            foreach ($file_data as $item) {
+                foreach ($item as $k => $v) {
+                    if ($k == $data['key']) {
                         $key = $v;
                     }
-                    if($k == $data['value']){
+                    if ($k == $data['value']) {
                         $value = $v;
                     }
 
-                    if(isset($key) && isset($value)){
+                    if (isset($key) && isset($value)) {
                         $columns[$key] = $value;
                     }
                 }

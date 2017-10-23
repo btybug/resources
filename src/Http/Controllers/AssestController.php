@@ -2,7 +2,6 @@
 
 namespace Sahakavatar\Resources\Http\Controllers;
 
-use Sahakavatar\Cms\Helpers\helpers;
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\Assest;
 use App\Modules\Resources\Models\Manage;
@@ -10,6 +9,7 @@ use App\Modules\Resources\Models\StyleItems;
 use App\Repositories\TermRepository as Terms;
 use File;
 use Illuminate\Http\Request;
+use Sahakavatar\Cms\Helpers\helpers;
 use Session;
 use Zipper;
 
@@ -26,7 +26,7 @@ class AssestController extends Controller
     private $libs;
 
 
-    public function __construct (Terms $terms, Manage $manager)
+    public function __construct(Terms $terms, Manage $manager)
     {
         $this->helpers = new helpers;
         $this->destinationPath = 'public/plugins';
@@ -36,7 +36,7 @@ class AssestController extends Controller
 
     }
 
-    public function getIndex ()
+    public function getIndex()
     {
         $assets = [];
         $files = File::directories('resources/assets/js');
@@ -55,10 +55,10 @@ class AssestController extends Controller
      * @param $section
      * @return mixed
      */
-    private function addAssestToDB ($plugin_name, $section)
+    private function addAssestToDB($plugin_name, $section)
     {
         $assest = Assest::where('folder', $plugin_name)->where('section', $section)->first();
-        if (! $assest) {
+        if (!$assest) {
             $assest = new Assest;
             $assest->title = camel_case($plugin_name);
             $assest->folder = $plugin_name;
@@ -69,7 +69,7 @@ class AssestController extends Controller
         return $assest->id;
     }
 
-    public function getAssets ($section)
+    public function getAssets($section)
     {
         $assets = [];
 
@@ -90,14 +90,14 @@ class AssestController extends Controller
         return view('resources::assests._ajaxindex', compact(['assets', 'section']));
     }
 
-    public function getCreate ()
+    public function getCreate()
     {
         $tot_snippts = 0;
 
         return view('resources::assests.create', compact(['tot_snippts']));
     }
 
-    public function postUpload (Request $request)
+    public function postUpload(Request $request)
     {
         $response = $this->manager->upload($request);
         if ($response['code'] == '200') {
@@ -113,7 +113,7 @@ class AssestController extends Controller
         return $response;
     }
 
-    private function saveAssest ($plugin_name, $section)
+    private function saveAssest($plugin_name, $section)
     {
         $id = $this->addAssestToDB($plugin_name, $section);
         Session::flash('message', 'Upload Successfully!');
@@ -122,7 +122,7 @@ class AssestController extends Controller
         return $id;
     }
 
-    public function postOverwrite (Request $request)
+    public function postOverwrite(Request $request)
     {
         $req = $request->all();
         $name = $req['name'];
@@ -141,7 +141,7 @@ class AssestController extends Controller
         $this->saveAssest($name, $section);
     }
 
-    public function postDiscard (Request $request)
+    public function postDiscard(Request $request)
     {
         $req = $request->all();
         $name = $req['name'];
@@ -154,7 +154,7 @@ class AssestController extends Controller
         }
     }
 
-    public function getUpdate ($id)
+    public function getUpdate($id)
     {
         $asset = Assest::find($id);
         $snippts = ($asset->snippets != '') ? unserialize($asset->snippets) : '';
@@ -163,7 +163,7 @@ class AssestController extends Controller
         return view('resources::assests.edit', compact(['asset', 'snippts', 'tot_snippts']));
     }
 
-    public function postUpdate (Request $request)
+    public function postUpdate(Request $request)
     {
         $req = $request->all();
         $asset = Assest::find($req['id']);
@@ -177,7 +177,7 @@ class AssestController extends Controller
         return redirect('/admin/resources/core_assest');
     }
 
-    public function getDelete ($id)
+    public function getDelete($id)
     {
         $asset = Assest::find($id);
         $sec = $asset->section;
@@ -198,7 +198,7 @@ class AssestController extends Controller
         return redirect('/admin/resources/core_assest');
     }
 
-    public function postCreate (Request $request)
+    public function postCreate(Request $request)
     {
         $req = $request->all();
         $assest = new Assest;
@@ -212,7 +212,7 @@ class AssestController extends Controller
 
 
     // Fonts
-    public function getFontsList ()
+    public function getFontsList()
     {
 
         cors();
@@ -224,7 +224,7 @@ class AssestController extends Controller
             if (file_exists($font . '/config.json')) {
                 $config = json_decode(file_get_contents($font . '/config.json'));
                 $assets[] = [
-                    'title'  => $config->title,
+                    'title' => $config->title,
                     'folder' => basename($font)
                 ];
             }
@@ -233,7 +233,7 @@ class AssestController extends Controller
         return $assets;
     }
 
-    public function getFontIcons ($folder)
+    public function getFontIcons($folder)
     {
 
         cors();
@@ -249,7 +249,7 @@ class AssestController extends Controller
         return ['config' => $config, 'list' => $list];
     }
 
-    public function getFonts ()
+    public function getFonts()
     {
         $fonts = File::directories('resources/assets/fonts');
         $editors = [];//File::directories('resources/assets/js/');
@@ -259,7 +259,7 @@ class AssestController extends Controller
             if (file_exists($item . '/config.json')) {
                 $config = json_decode(file_get_contents($item . '/config.json'));
                 $assets[] = [
-                    'title'  => $config->title,
+                    'title' => $config->title,
                     'folder' => basename($item)
                 ];
             }
@@ -269,7 +269,7 @@ class AssestController extends Controller
         return view('resources::assests.fonts', compact(['assets']));
     }
 
-    public function getFontPreview ($folder)
+    public function getFontPreview($folder)
     {
         $folder = 'public/fonts/' . $folder;
         if (file_exists($folder . '/config.json')) {
@@ -281,7 +281,7 @@ class AssestController extends Controller
         return view('resources::assests.font_preview', compact(['config', 'list', 'css_link']));
     }
 
-    public function getDeleteFont ($font_folder)
+    public function getDeleteFont($font_folder)
     {
         $folder = 'public/fonts/' . $font_folder;
         if (file_exists($folder . '/config.json')) {
@@ -291,7 +291,7 @@ class AssestController extends Controller
         return redirect('/admin/resources/core_assest/fonts');
     }
 
-    public function postUploadfont (Request $request)
+    public function postUploadfont(Request $request)
     {
 
         $extension = $request->file('file')->getClientOriginalExtension();

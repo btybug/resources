@@ -1,7 +1,7 @@
 @extends('layouts.uiPreview')
 
 @section('content')
-    <div class="center-block" id="widget_container" >
+    <div class="center-block" id="widget_container">
         {!! $html !!}
     </div>
     <input type="hidden" value={!! $json !!} id="hidden_data">
@@ -9,7 +9,7 @@
 
 @section('settings')
     {!! Form::model($model,['id'=>'add_custome_page']) !!}
-        @include($settingsHtml)
+    @include($settingsHtml)
     {!! Form::close() !!}
 
     <div class="modal fade" id="magic-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -17,7 +17,8 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     {{--{!! Form::submit('Save',['class' => 'btn btn-success pull-right m-r-10']) !!}--}}
                     <h4 class="modal-title" id="myModalLabel"></h4>
                 </div>

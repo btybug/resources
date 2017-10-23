@@ -11,8 +11,6 @@
 
 namespace Sahakavatar\Resources\Http\Controllers;
 
-use Sahakavatar\Cms\Helpers\helpers;
-use Sahakavatar\Cms\Helpers\helpers;
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\StyleItems;
 use App\Modules\Resources\Models\Styles;
@@ -20,7 +18,8 @@ use App\Modules\Resources\Models\StyleUpload;
 use Datatables;
 use File;
 use Illuminate\Http\Request;
-use Response;
+use Sahakavatar\Cms\Helpers\helpers;
+use Sahakavatar\Cms\Helpers\helpers;
 use View;
 
 
@@ -53,7 +52,7 @@ class StylesController extends Controller
      *
      * @param Dhelper $dhelper
      */
-    public function __construct (StyleUpload $stUpl)
+    public function __construct(StyleUpload $stUpl)
     {
         $this->stUpload = $stUpl;
         $this->dhelp = new dbhelper();
@@ -64,7 +63,7 @@ class StylesController extends Controller
     /**
      * @return mixed
      */
-    public function getIndex ()
+    public function getIndex()
     {
         $styles = Styles::where('type', 'text')->get();
 
@@ -75,12 +74,12 @@ class StylesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postAddSub (Request $request)
+    public function postAddSub(Request $request)
     {
         $type = $request->get('type');
         $name = $request->get('name');
 
-        if (! in_array($type, Styles::$stylesTypes)) return redirect()->back();
+        if (!in_array($type, Styles::$stylesTypes)) return redirect()->back();
 
         Styles::create([
             'name' => $name,
@@ -95,7 +94,7 @@ class StylesController extends Controller
     /**
      * Deleting Style Itoms
      */
-    public function getStyleDelete (Request $request, $id)
+    public function getStyleDelete(Request $request, $id)
     {
         $styleItom = StyleItems::find($id);
         if ($styleItom->delete()) return redirect()->back();
@@ -106,7 +105,7 @@ class StylesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postUpload (Request $request)
+    public function postUpload(Request $request)
     {
         $style_id = $request->get('style_id');
 
@@ -130,26 +129,26 @@ class StylesController extends Controller
      * @param Request $request
      * @return array|string
      */
-    public function postUploadOld (Request $request)
+    public function postUploadOld(Request $request)
     {
         $isValid = $this->stUpload->isCompress($request->file('file'));
 
-        if (! $isValid) return $this->stUpload->ResponseError('Uploaded data is InValid!!!', 500);
+        if (!$isValid) return $this->stUpload->ResponseError('Uploaded data is InValid!!!', 500);
 
         $response = $this->stUpload->upload($request);
-        if (! $response['error']) {
+        if (!$response['error']) {
             //save style
             $result = $this->stUpload->validateAndreturnData($response['folder'], $response['data']);
-            if (! $result['error']) {
+            if (!$result['error']) {
                 File::deleteDirectory($this->up, true);
                 $data = $result['data'];
                 $styleSlug = $data['style'];
                 if ($style = Styles::where('slug', $styleSlug)->first()) {
 
                     StyleItems::create([
-                        'name'     => $data['name'],
-                        'slug'     => $data['slug'],
-                        'type'     => $data['type'],
+                        'name' => $data['name'],
+                        'slug' => $data['slug'],
+                        'type' => $data['type'],
                         'css_data' => $data['css_data'],
                         'style_id' => $style->id,
                     ]);
@@ -173,7 +172,7 @@ class StylesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postRenderStyles (Request $request)
+    public function postRenderStyles(Request $request)
     {
         $main_type = $request->get('main_type');
         $subItem = $request->get('sub');
@@ -186,7 +185,7 @@ class StylesController extends Controller
             $html = View::make("resources::styles._partials.subs_list", compact(['styles', 'subItem', 'main_type', 'sort']))->render();
         } else {
             $style = Styles::find($subItem);
-            if (! $style) return \Response::json(['message' => "Sub Style not found !!!", 'error' => true]);
+            if (!$style) return \Response::json(['message' => "Sub Style not found !!!", 'error' => true]);
             $styleItems = $style->items()->orderBy($orderData['key'], $orderData['value'])->get();
 
             $html = View::make("resources::styles._partials.list_cube", compact(['styleItems', 'subItem', 'main_type', 'sort']))->render();
@@ -200,7 +199,7 @@ class StylesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postShowPopUp (Request $request)
+    public function postShowPopUp(Request $request)
     {
         $style_id = $request->get('id');
 
@@ -215,11 +214,11 @@ class StylesController extends Controller
      * @param $style_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getStylePreview ($style_id)
+    public function getStylePreview($style_id)
     {
         $style = Styles::find($style_id);
 
-        if (! $style) return redirect()->back();
+        if (!$style) return redirect()->back();
 
         $items = $style->items;
 
@@ -231,7 +230,7 @@ class StylesController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postStylePreview (Request $request, $id)
+    public function postStylePreview(Request $request, $id)
     {
         $subItem = $request->get('sub');
         $sort = $request->get('sort');
@@ -239,7 +238,7 @@ class StylesController extends Controller
 
         $style = Styles::find($id);
 
-        if (! $style) return \Response::json(['error' => true]);
+        if (!$style) return \Response::json(['error' => true]);
 
         $styleItems = $style->items()->orderBy($orderData['key'], $orderData['value'])->get();
 
@@ -253,7 +252,7 @@ class StylesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postStyleCssUpdate (Request $request)
+    public function postStyleCssUpdate(Request $request)
     {
         $id = $request->get('id');
         $css = $request->get('css');
@@ -270,7 +269,7 @@ class StylesController extends Controller
      *
      * @return view
      */
-    public function getText ()
+    public function getText()
     {
         $data = Classes::where('type', 'text')->get();
 
@@ -281,7 +280,7 @@ class StylesController extends Controller
      * @param $type
      * @return mixed
      */
-    public function getData ($type)
+    public function getData($type)
     {
         $data = Classes::where('type', $type)->get();
         $obj = Datatables::of($data)->addColumn('action', function ($class) {
@@ -305,11 +304,11 @@ class StylesController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function makeDefault ($style_id, $id)
+    public function makeDefault($style_id, $id)
     {
         $item = StyleItems::find($id);
 
-        if (! $item) return redirect()->back();
+        if (!$item) return redirect()->back();
 
         StyleItems::where('style_id', $style_id)->update([
             'is_default' => 0
@@ -326,7 +325,7 @@ class StylesController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getOptimize ()
+    public function getOptimize()
     {
         StyleItems::makeCss();
 

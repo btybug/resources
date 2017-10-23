@@ -14,7 +14,8 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         Variations for [{{ $unit->title }}] unit
-                        <a href="javascript:void(0)" class="btn btn-xs btn-success pull-right" id="new-variation" style="color:#fff;">New Variation</a>
+                        <a href="javascript:void(0)" class="btn btn-xs btn-success pull-right" id="new-variation"
+                           style="color:#fff;">New Variation</a>
                     </h4>
                 </div>
                 <div class="panel-body">
@@ -29,22 +30,30 @@
 
                         @foreach($variations as $variation_data)
                             <tr>
-                                <td><a href="#" class="editable" data-type="text" data-pk="{{$variation_data->id}}" data-title="Template Variation Title">{{$variation_data->title}}</a></td>
+                                <td><a href="#" class="editable" data-type="text" data-pk="{{$variation_data->id}}"
+                                       data-title="Template Variation Title">{{$variation_data->title}}</a></td>
 
 
-                                    </td>
+                                </td>
 
                                 <td>
 
-                                    <a href="/admin/resources/units/settings/{{$variation_data->id}}" class="btn btn-default btn-warning btn-xs">&nbsp;<i class="fa fa-cog"></i>&nbsp;</a>
-                                    <a href="/admin/resources/units/live-settings/{{$variation_data->id}}" class="btn btn-default btn-primary btn-xs">&nbsp;<i class="fa fa-desktop"></i>&nbsp;</a>
+                                    <a href="/admin/resources/units/settings/{{$variation_data->id}}"
+                                       class="btn btn-default btn-warning btn-xs">&nbsp;<i class="fa fa-cog"></i>&nbsp;</a>
+                                    <a href="/admin/resources/units/live-settings/{{$variation_data->id}}"
+                                       class="btn btn-default btn-primary btn-xs">&nbsp;<i class="fa fa-desktop"></i>&nbsp;</a>
                                     @if($variation_data->default == 0)
                                         <button value="{{$variation_data->id}}"
                                                 class="btn btn-info btn-xs edit-variation">&nbsp;<i
-                                                    class="fa fa-pencil"></i>&nbsp;</button>
-                                        <a href="/admin/resources/units/delete-variation/{{$variation_data->id}}/{{$unit->id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete')"> &nbsp;<i class="fa fa-trash"></i> &nbsp;</a>
+                                                    class="fa fa-pencil"></i>&nbsp;
+                                        </button>
+                                        <a href="/admin/resources/units/delete-variation/{{$variation_data->id}}/{{$unit->id}}"
+                                           class="btn btn-danger btn-xs"
+                                           onclick="return confirm('Are you sure to delete')"> &nbsp;<i
+                                                    class="fa fa-trash"></i> &nbsp;</a>
 
-                                        <a href="/admin/resources/units/make-default-variation/{{$variation_data->id}}/{{$unit->id}}" class="btn btn-primary btn-xs"> &nbsp;make default</a>
+                                        <a href="/admin/resources/units/make-default-variation/{{$variation_data->id}}/{{$unit->id}}"
+                                           class="btn btn-primary btn-xs"> &nbsp;make default</a>
                                     @endif
                                 </td>
                             </tr>
@@ -76,7 +85,9 @@
                         {!! Form::label('title','Varitation Name') !!}
                         {!! Form::text('title',issetReturn($variation, 'variation_name'), ['class' => 'form-control']) !!}
                     </div>
-                    <button class="btn btn-sm btn-success mrg-btm-10" type="submit"><i class="fa fa-save"></i> Save Variation</button>
+                    <button class="btn btn-sm btn-success mrg-btm-10" type="submit"><i class="fa fa-save"></i> Save
+                        Variation
+                    </button>
                     <button class="btn btn-sm btn-default mrg-btm-10 cancel" type="button">Cancel</button>
                     {!! Form::close() !!}
                 </div>
@@ -95,12 +106,12 @@
 @section('JS')
     {!! HTML::script('js/bootstrap-editable/js/bootstrap-editable.min.js') !!}
     <script>
-        $('#new-variation').click(function(){
+        $('#new-variation').click(function () {
             $('.new-variation').removeClass('hide');
             $('#edit_variation_form').remove();
         });
 
-        $('.new-variation-section').click(function(){
+        $('.new-variation-section').click(function () {
             $('#variation-section').val($(this).attr('data-section'));
             $('.new-variation').removeClass('hide');
         });
@@ -111,7 +122,7 @@
             $('.new-variation').addClass('hide');
         })
 
-        $('.cancel').click(function(){
+        $('.cancel').click(function () {
             $('.new-variation').addClass('hide');
         });
     </script>

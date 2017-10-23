@@ -1,11 +1,11 @@
 <?php namespace Sahakavatar\Resources\Models;
-use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\Caster\ExceptionCaster;
-use Sahakavatar\Cms\Helpers\helpers;
+
 use App\Models\MenuData;
+use File;
+use Illuminate\Http\Request;
+use Sahakavatar\Cms\Helpers\helpers;
 use Sahakavatar\Cms\Models\Templates\Units;
-use Zipper,
-    File;
+use Zipper;
 
 class UnitUpload
 {
@@ -20,6 +20,7 @@ class UnitUpload
     public $generatedName;
 
     protected $dir;
+
     /**
      * UnitUpload constructor.
      */
@@ -81,14 +82,14 @@ class UnitUpload
     {
         if (File::exists($this->uf . $folder . '/' . 'config.json')) {
             $file = $this->uf . $folder . '/' . 'config.json';
-            $response =  $this->validate($file, $folder);
-            if($response['error'])
+            $response = $this->validate($file, $folder);
+            if ($response['error'])
                 return $response;
 
-            if(isset($response['data']['type'])){
-                $this->dir = config('paths.unit_path') . $response['data']['type'] .'/'. $response['data']['main_type'] .'/'.$folder;
-            }else{
-                $this->dir = config('paths.unit_path'). $response['data']['main_type'].'/'.$folder;
+            if (isset($response['data']['type'])) {
+                $this->dir = config('paths.unit_path') . $response['data']['type'] . '/' . $response['data']['main_type'] . '/' . $folder;
+            } else {
+                $this->dir = config('paths.unit_path') . $response['data']['main_type'] . '/' . $folder;
             }
 
             File::copyDirectory($this->uf . $folder, $this->dir);
@@ -97,17 +98,17 @@ class UnitUpload
         } else {
             if (File::exists($this->uf . $folder . '/' . $name . '/' . 'config.json')) {
                 $file = $this->uf . $folder . '/' . $name . '/' . 'config.json';
-                $response =  $this->validate($file, $folder);
-                if($response['error'])
+                $response = $this->validate($file, $folder);
+                if ($response['error'])
                     return $response;
 
-                if(isset($response['data']['type'])){
-                    $this->dir = config('paths.unit_path'). $response['data']['type'] .'/'. $response['data']['main_type'] .'/'.$folder;
-                }else{
-                    $this->dir = config('paths.unit_path'). $response['data']['main_type'].'/'.$folder;
+                if (isset($response['data']['type'])) {
+                    $this->dir = config('paths.unit_path') . $response['data']['type'] . '/' . $response['data']['main_type'] . '/' . $folder;
+                } else {
+                    $this->dir = config('paths.unit_path') . $response['data']['main_type'] . '/' . $folder;
                 }
 
-                File::copyDirectory($this->uf . $folder. '/' . $name, $this->dir);
+                File::copyDirectory($this->uf . $folder . '/' . $name, $this->dir);
 
                 return $response;
             }
@@ -133,7 +134,7 @@ class UnitUpload
             $conf['slug'] = (string)$key;
             $json = json_encode($conf, true);
             File::put($file, $json);
-            return ['data' => $conf,'code' => '200', 'error' => false];
+            return ['data' => $conf, 'code' => '200', 'error' => false];
         }
 
         return ['message' => 'Json file is empty !!!', 'code' => '404', 'error' => true];
@@ -144,14 +145,14 @@ class UnitUpload
     {
         $variation_path = $this->dir . '/variations';
         if (File::isDirectory($variation_path)) {
-            if($files = File::allFiles($variation_path)){
+            if ($files = File::allFiles($variation_path)) {
                 foreach ($files as $file) {
                     if (File::extension($file) == 'json') {
                         $json = File::get($file);
                         if ($json) {
                             $json = json_decode($json, true);
-                            $json['id'] = $data['slug'] . '.'. uniqid();
-                            File::put($variation_path . '/' . $json['id'] . '.json', json_encode($json,true));
+                            $json['id'] = $data['slug'] . '.' . uniqid();
+                            File::put($variation_path . '/' . $json['id'] . '.json', json_encode($json, true));
                             File::delete($file);
                         }
                     }
@@ -160,7 +161,7 @@ class UnitUpload
             }
         }
         File::makeDirectory($variation_path);
-        Units::find($data['slug'])->makeVariation(['title'=> 'main variation'])->save();
+        Units::find($data['slug'])->makeVariation(['title' => 'main variation'])->save();
     }
 
 

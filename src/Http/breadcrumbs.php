@@ -10,9 +10,6 @@ Breadcrumbs::register(
 );
 
 
-
-
-
 Breadcrumbs::register(
     'assets_fonts',
     function ($breadcrumbs) {

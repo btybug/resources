@@ -14,7 +14,8 @@
                 @if($types)
                     @foreach($types as $v)
                         <li>
-                            <a href="?p={!! $v['foldername'] !!}" rel="tab" main-type="{{ $v['foldername'] }}" class="tpl-left-items">
+                            <a href="?p={!! $v['foldername'] !!}" rel="tab" main-type="{{ $v['foldername'] }}"
+                               class="tpl-left-items">
                                 <span class="module_icon"></span> {{ $v['title'] }}
                                 @if($v['foldername'] == 'body')
                                     <a href="javascript:void(0)" class="add-new-type pull-right"><i
@@ -25,7 +26,8 @@
                         @if(isset($v['subs']) and count($v['subs']))
                             @foreach($v['subs'] as $sub)
                                 <li class="m-l-30" style="width: 90%;">
-                                    <a href="?p={!! $v['foldername'] !!}" type="{!! $v['foldername'] !!}" main-type="{{ $sub['foldername'] }}"
+                                    <a href="?p={!! $v['foldername'] !!}" type="{!! $v['foldername'] !!}"
+                                       main-type="{{ $sub['foldername'] }}"
                                        class="tpl-left-items">
                                         <span class="module_icon"></span> {{ $sub['title'] }}
                                         @if($sub['type'] != 'core')
@@ -147,15 +149,14 @@
         };
 
         $(document).ready(function () {
-            var p="{!! $_GET['p'] or null !!}";
+            var p = "{!! $_GET['p'] or null !!}";
 
             $("body").on("click", ".add-new-type", function () {
                 $('#addNewType').modal();
             });
 
 
-
-            $('.list-unstyled').on('click', '.tpl-left-items', function(e) {
+            $('.list-unstyled').on('click', '.tpl-left-items', function (e) {
                 var main_type = $(this).attr('main-type');
                 var general_type = $(this).attr('type');
                 var pageurl = $(this).attr('href');
@@ -172,7 +173,7 @@
                     url: '/admin/templates/templates-with-type',
                     data: {
                         main_type: main_type,
-                        url:pageurl+'?rel=tab',
+                        url: pageurl + '?rel=tab',
                         type: general_type
                     },
                     dataType: 'json',
@@ -181,7 +182,7 @@
                         $('.img-loader').removeClass('hide');
                     },
                     headers: {
-                        'X-CSRF-TOKEN':$("input[name='_token']").val()
+                        'X-CSRF-TOKEN': $("input[name='_token']").val()
                     },
                     success: function (data) {
                         $('.img-loader').addClass('hide');
@@ -192,13 +193,13 @@
                     },
                     type: 'POST'
                 });
-                if(pageurl!=window.location){
-                    window.history.pushState({path:pageurl},'',pageurl);
+                if (pageurl != window.location) {
+                    window.history.pushState({path: pageurl}, '', pageurl);
                 }
                 return false;
             });
 
-            $("a[main-type="+p+"]").click();
+            $("a[main-type=" + p + "]").click();
 
             $('body').on('click', '.del-tpl', function () {
                 var slug = $(this).attr('slug');
@@ -208,7 +209,7 @@
                         slug: slug
                     },
                     headers: {
-                        'X-CSRF-TOKEN':$("input[name='_token']").val()
+                        'X-CSRF-TOKEN': $("input[name='_token']").val()
                     },
                     dataType: 'json',
                     success: function (data) {
@@ -226,7 +227,7 @@
                         folder: folder
                     },
                     headers: {
-                        'X-CSRF-TOKEN':$("input[name='_token']").val()
+                        'X-CSRF-TOKEN': $("input[name='_token']").val()
                     },
                     dataType: 'json',
                     success: function (data) {

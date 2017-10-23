@@ -2,7 +2,7 @@
     @foreach($templates as $tpl)
 
         <div class="row templates m-b-10">
-         <button type="button" class="btn btn-info">{!! $tpl->title !!}</button>
+            <button type="button" class="btn btn-info">{!! $tpl->title !!}</button>
         </div>
 
     @endforeach

@@ -111,7 +111,7 @@ class ModuleServiceProvider extends ServiceProvider
                 ]
             ],
 
-           ];
+        ];
 
         \Eventy::action('my.tab', $tabs);
     }

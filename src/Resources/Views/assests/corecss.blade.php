@@ -2,7 +2,7 @@
 
 @section('parag')
     {!! Breadcrumbs::render('core_css') !!}
-    @stop
+@stop
 @section('tab')
 
     @include('tools::common_inc')

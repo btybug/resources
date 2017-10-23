@@ -14,23 +14,26 @@
                 {{--main types--}}
                 <li class="active_class">
                     <a href="#" main-type="text" class="tpl-left-items">
-                        <span class="module_icon"></span> Text <a data-type="text" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
+                        <span class="module_icon"></span> Text <a data-type="text" class="add-class-modal pull-right"><i
+                                    class="fa fa-plus-circle"></i></a>
                     </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('text')))
-                        @foreach(\App\Modules\Resources\Models\Classes::getSub('text') as $sub)
-                            <li class="active_class" style="margin-left: 15px">
-                                <a href="#" main-type="text" class="tpl-left-items">
-                                    <span class="module_icon"></span> {{$sub->name}}
-                                </a>
-                            </li>
+                @if(count(\App\Modules\Resources\Models\Classes::getSub('text')))
+                    @foreach(\App\Modules\Resources\Models\Classes::getSub('text') as $sub)
+                        <li class="active_class" style="margin-left: 15px">
+                            <a href="#" main-type="text" class="tpl-left-items">
+                                <span class="module_icon"></span> {{$sub->name}}
+                            </a>
+                        </li>
                         @endforeach
-                    @endif
-                </li>
+                        @endif
+                        </li>
 
-                <li>
-                    <a href="#" main-type="image" class="tpl-left-items">
-                        <span class="module_icon"></span> Images <a data-type="image" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
+                        <li>
+                            <a href="#" main-type="image" class="tpl-left-items">
+                                <span class="module_icon"></span> Images <a data-type="image"
+                                                                            class="add-class-modal pull-right"><i
+                                            class="fa fa-plus-circle"></i></a>
+                            </a>
                         @if(count(\App\Modules\Resources\Models\Classes::getSub('image')))
                             @foreach(\App\Modules\Resources\Models\Classes::getSub('image') as $sub)
                                 <li class="active_class" style="margin-left: 15px">
@@ -38,95 +41,117 @@
                                         <span class="module_icon"></span> {{$sub->name}}
                                     </a>
                                 </li>
-                            @endforeach
-                        @endif
-                </li>
+                                @endforeach
+                                @endif
+                                </li>
 
-                <li>
-                    <a href="#" main-type="container" class="tpl-left-items">
-                        <span class="module_icon"></span> Container <a data-type="container" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('container')))
-                        @foreach(\App\Modules\Resources\Models\Classes::getSub('container') as $sub)
-                            <li class="active_class" style="margin-left: 15px">
-                                <a href="#" main-type="container" class="tpl-left-items">
-                                    <span class="module_icon"></span> {{$sub->name}}
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </li>
+                                <li>
+                                    <a href="#" main-type="container" class="tpl-left-items">
+                                        <span class="module_icon"></span> Container <a data-type="container"
+                                                                                       class="add-class-modal pull-right"><i
+                                                    class="fa fa-plus-circle"></i></a>
+                                    </a>
+                                @if(count(\App\Modules\Resources\Models\Classes::getSub('container')))
+                                    @foreach(\App\Modules\Resources\Models\Classes::getSub('container') as $sub)
+                                        <li class="active_class" style="margin-left: 15px">
+                                            <a href="#" main-type="container" class="tpl-left-items">
+                                                <span class="module_icon"></span> {{$sub->name}}
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                        @endif
+                                        </li>
 
-                <li>
-                    <a href="#" main-type="animation" class="tpl-left-items">
-                        <span class="module_icon"></span> Animation <a data-type="animation" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('animation')))
-                    @foreach(\App\Modules\Resources\Models\Classes::getSub('animation') as $sub)
-                    <li class="active_class" style="margin-left: 15px">
-                        <a href="#" main-type="animation" class="tpl-left-items">
-                            <span class="module_icon"></span> {{$sub->name}}
-                        </a>
-                    </li>
-                    @endforeach
-                    @endif
-                </li>
-                <li>
-                    <a href="#" main-type="fields" class="tpl-left-items">
-                        <span class="module_icon"></span> Fields <a data-type="fields"  class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('fields')))
-                        @foreach(\App\Modules\Resources\Models\Classes::getSub('fields') as $sub)
-                            <li class="active_class" style="margin-left: 15px">
-                                <a href="#" main-type="fields" class="tpl-left-items">
-                                    <span class="module_icon"></span> {{$sub->name}}
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </li>
-                <li>
-                    <a href="#" main-type="buttons" class="tpl-left-items">
-                        <span class="module_icon"></span> Buttons <a data-type="buttons" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('buttons')))
-                    @foreach(\App\Modules\Resources\Models\Classes::getSub('buttons') as $sub)
-                    <li class="active_class" style="margin-left: 15px">
-                        <a href="#" main-type="buttons" class="tpl-left-items">
-                            <span class="module_icon"></span> {{$sub->name}}
-                        </a>
-                    </li>
-                    @endforeach
-                    @endif
-                </li>
-                <li>
-                    <a href="#" main-type="notification" class="tpl-left-items">
-                        <span class="module_icon"></span> Notifications <a data-type="notification" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('notification')))
-                        @foreach(\App\Modules\Resources\Models\Classes::getSub('notification') as $sub)
-                            <li class="active_class" style="margin-left: 15px">
-                                <a href="#" main-type="notification" class="tpl-left-items">
-                                <span class="module_icon"></span> {{$sub->name}}
-                            </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </li>
-                <li>
-                    <a href="#" main-type="menu" class="tpl-left-items">
-                        <span class="module_icon"></span> Menu <a data-type="menu" class="add-class-modal pull-right"><i class="fa fa-plus-circle"></i></a>
-                    </a>
-                    @if(count(\App\Modules\Resources\Models\Classes::getSub('menu')))
-                        @foreach(\App\Modules\Resources\Models\Classes::getSub('menu') as $sub)
-                            <li class="active_class" style="margin-left: 15px">
-                                <a href="#" main-type="menu" class="tpl-left-items">
-                                    <span class="module_icon"></span> {{$sub->name}}
-                                </a>
-                            </li>
-                            @endforeach
-                            @endif
-                </li>
+                                        <li>
+                                            <a href="#" main-type="animation" class="tpl-left-items">
+                                                <span class="module_icon"></span> Animation <a data-type="animation"
+                                                                                               class="add-class-modal pull-right"><i
+                                                            class="fa fa-plus-circle"></i></a>
+                                            </a>
+                                        @if(count(\App\Modules\Resources\Models\Classes::getSub('animation')))
+                                            @foreach(\App\Modules\Resources\Models\Classes::getSub('animation') as $sub)
+                                                <li class="active_class" style="margin-left: 15px">
+                                                    <a href="#" main-type="animation" class="tpl-left-items">
+                                                        <span class="module_icon"></span> {{$sub->name}}
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                                @endif
+                                                </li>
+                                                <li>
+                                                    <a href="#" main-type="fields" class="tpl-left-items">
+                                                        <span class="module_icon"></span> Fields <a data-type="fields"
+                                                                                                    class="add-class-modal pull-right"><i
+                                                                    class="fa fa-plus-circle"></i></a>
+                                                    </a>
+                                                @if(count(\App\Modules\Resources\Models\Classes::getSub('fields')))
+                                                    @foreach(\App\Modules\Resources\Models\Classes::getSub('fields') as $sub)
+                                                        <li class="active_class" style="margin-left: 15px">
+                                                            <a href="#" main-type="fields" class="tpl-left-items">
+                                                                <span class="module_icon"></span> {{$sub->name}}
+                                                            </a>
+                                                        </li>
+                                                        @endforeach
+                                                        @endif
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" main-type="buttons" class="tpl-left-items">
+                                                                <span class="module_icon"></span> Buttons <a
+                                                                        data-type="buttons"
+                                                                        class="add-class-modal pull-right"><i
+                                                                            class="fa fa-plus-circle"></i></a>
+                                                            </a>
+                                                        @if(count(\App\Modules\Resources\Models\Classes::getSub('buttons')))
+                                                            @foreach(\App\Modules\Resources\Models\Classes::getSub('buttons') as $sub)
+                                                                <li class="active_class" style="margin-left: 15px">
+                                                                    <a href="#" main-type="buttons"
+                                                                       class="tpl-left-items">
+                                                                        <span class="module_icon"></span> {{$sub->name}}
+                                                                    </a>
+                                                                </li>
+                                                                @endforeach
+                                                                @endif
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" main-type="notification"
+                                                                       class="tpl-left-items">
+                                                                        <span class="module_icon"></span> Notifications
+                                                                        <a data-type="notification"
+                                                                           class="add-class-modal pull-right"><i
+                                                                                    class="fa fa-plus-circle"></i></a>
+                                                                    </a>
+                                                                @if(count(\App\Modules\Resources\Models\Classes::getSub('notification')))
+                                                                    @foreach(\App\Modules\Resources\Models\Classes::getSub('notification') as $sub)
+                                                                        <li class="active_class"
+                                                                            style="margin-left: 15px">
+                                                                            <a href="#" main-type="notification"
+                                                                               class="tpl-left-items">
+                                                                                <span class="module_icon"></span> {{$sub->name}}
+                                                                            </a>
+                                                                        </li>
+                                                                        @endforeach
+                                                                        @endif
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" main-type="menu"
+                                                                               class="tpl-left-items">
+                                                                                <span class="module_icon"></span> Menu
+                                                                                <a data-type="menu"
+                                                                                   class="add-class-modal pull-right"><i
+                                                                                            class="fa fa-plus-circle"></i></a>
+                                                                            </a>
+                                                                        @if(count(\App\Modules\Resources\Models\Classes::getSub('menu')))
+                                                                            @foreach(\App\Modules\Resources\Models\Classes::getSub('menu') as $sub)
+                                                                                <li class="active_class"
+                                                                                    style="margin-left: 15px">
+                                                                                    <a href="#" main-type="menu"
+                                                                                       class="tpl-left-items">
+                                                                                        <span class="module_icon"></span> {{$sub->name}}
+                                                                                    </a>
+                                                                                </li>
+                                                                                @endforeach
+                                                                                @endif
+                                                                                </li>
             </ul>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
@@ -190,9 +215,9 @@
                     <h4 class="modal-title" id="myModalLabel">Create new Sub</h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['url'=>'/admin//classes/add-sub']) !!}
-                        {!! Form::hidden('type',null,['id' => 'class-type']) !!}
-                            <!-- Text input-->
+                {!! Form::open(['url'=>'/admin//classes/add-sub']) !!}
+                {!! Form::hidden('type',null,['id' => 'class-type']) !!}
+                <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="name">Sub Name</label>
                         <div class="col-md-4">
@@ -226,7 +251,7 @@
             left: 40%;
         }
 
-        .active_class{
+        .active_class {
             background: #b3eac4 !important;
         }
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-   Create sub
+    Create sub
 @stop
 
 @section('CSS')

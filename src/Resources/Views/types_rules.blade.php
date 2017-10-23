@@ -27,7 +27,7 @@
         <div class="col-md-4 rules_select" id="password_rules">
             <div class="form-group">
                 <label for="sel1">Password Rules</label>
-                <select class="form-control" >
+                <select class="form-control">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -38,7 +38,7 @@
         <div class="col-md-4 rules_select" id="file_rules">
             <div class="form-group">
                 <label for="sel1">File Rules</label>
-                <select class="form-control" >
+                <select class="form-control">
                     <option>Minimum size</option>
                     <option>Maximum size</option>
                     <option>No.filel</option>
@@ -49,7 +49,7 @@
         <div class="col-md-4 rules_select" id="numeryc_rules">
             <div class="form-group">
                 <label for="sel1">Numeric Rules</label>
-                <select class="form-control" >
+                <select class="form-control">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>

@@ -28,20 +28,23 @@
 <body>
 {{--iframe--}}
 <div class="bbifreampreview">
-<iframe data-reloadiframe="iframe1" id="layoutViewSetting" src="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}"></iframe>
-<iframe data-reloadiframe="iframe2" class="hide" src="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}"></iframe>
+    <iframe data-reloadiframe="iframe1" id="layoutViewSetting"
+            src="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}"></iframe>
+    <iframe data-reloadiframe="iframe2" class="hide"
+            src="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}"></iframe>
 </div>
-<input type="hidden" data-selectedlayout="" value="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}" >
-<input type="hidden" data-url="{!! url('/admin/templates/front-layout-settings',$layout) !!}" >
+<input type="hidden" data-selectedlayout="" value="{!! url('/admin/templates/settings-iframe-layout',$layout) !!}">
+<input type="hidden" data-url="{!! url('/admin/templates/front-layout-settings',$layout) !!}">
 <div class="bbsettingheader">
-    <button type="button" class="btn btn-info " data-bblayoutaction="setting"><i class="glyphicon glyphicon-cog"></i></button>
+    <button type="button" class="btn btn-info " data-bblayoutaction="setting"><i class="glyphicon glyphicon-cog"></i>
+    </button>
 </div>
 <div class="layoutCoresetting animated bounceInRight hide" data-settinglive="settings">
-<div class="container-fluid">
-<form>
-{!! $htmlSettings !!}
-</form>
-</div>
+    <div class="container-fluid">
+        <form>
+            {!! $htmlSettings !!}
+        </form>
+    </div>
 </div>
 
 {!! HTML::style("/js/animate/css/animate.css") !!}

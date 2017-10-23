@@ -113,7 +113,7 @@
             margin-right: 10px;
         }
 
-        .customiser-panel{
+        .customiser-panel {
             display: none;
         }
     </style>
@@ -126,25 +126,26 @@
     <div class="container-fluid">
         <div class="row">
             {!! Form::model('customiser',['method'=>'POST','url'=>'/admin/templates/update-customiser', 'id'=>'customiser-form']) !!}
-                {!! Form::hidden('variation_id',$variation_id) !!}
-                {!! Form::hidden('template',$template_id) !!}
-                <input type="hidden" id="token" value="{{ csrf_token() }}">
-                <div class="col-md-3 no-padding customise-tools" data-settings='{!!$serializedSettings!!}'>
-                    <div class="panel panel-default">
-                        <div class="panel-body no-padding customise-panel">
-                            <!-- Widgets Area -->
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <strong>Available Widgets</strong>
-                                            <a href="{{ url('/admin/templates/variations/'.$template_id) }}" class="pull-right">Back</a>
-                                        </h4>
-                                    </div>
-                                    <div id="widgets" class="panel-collapse">
-                                        <div class="panel-body">
-                                            <ul class="widgets-list">
-                                                @foreach(BBGetWidgets() as $widget)
+            {!! Form::hidden('variation_id',$variation_id) !!}
+            {!! Form::hidden('template',$template_id) !!}
+            <input type="hidden" id="token" value="{{ csrf_token() }}">
+            <div class="col-md-3 no-padding customise-tools" data-settings='{!!$serializedSettings!!}'>
+                <div class="panel panel-default">
+                    <div class="panel-body no-padding customise-panel">
+                        <!-- Widgets Area -->
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <strong>Available Widgets</strong>
+                                        <a href="{{ url('/admin/templates/variations/'.$template_id) }}"
+                                           class="pull-right">Back</a>
+                                    </h4>
+                                </div>
+                                <div id="widgets" class="panel-collapse">
+                                    <div class="panel-body">
+                                        <ul class="widgets-list">
+                                            @foreach(BBGetWidgets() as $widget)
                                                 <li data-id="{{$widget->id}}">
                                                     <a href="javascript:;">
                                                         <i class="fa fa-map"></i>
@@ -154,89 +155,102 @@
                                                         {{ $widget->content }}
                                                     </script>
                                                 </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END Widgets Area -->
-                            {{--*/ $selectors = [] /*--}}
-                            @foreach($customiser as $tab)
-                                @if(isset($tab['selector']))
-                                {{--*/  $selectors[] = $tab['selector'] /*--}}
-                                @endif
-                            <!-- Accordion Group -->
-                            <div class="panel-group customiser-panel" id="{{ base64_encode($tab['title']) }}" role="tablist" data-selector="{{issetReturn($tab, 'selector')}}" aria-multiselectable="true">
+                        </div>
+                        <!-- END Widgets Area -->
+                    {{--*/ $selectors = [] /*--}}
+                    @foreach($customiser as $tab)
+                        @if(isset($tab['selector']))
+                            {{--*/  $selectors[] = $tab['selector'] /*--}}
+                        @endif
+                        <!-- Accordion Group -->
+                            <div class="panel-group customiser-panel" id="{{ base64_encode($tab['title']) }}"
+                                 role="tablist" data-selector="{{issetReturn($tab, 'selector')}}"
+                                 aria-multiselectable="true">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingOne">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#styling" href="#{{ md5($tab['title']) }}" aria-expanded="true" aria-controls="colorsBackgrounds">
+                                            <a role="button" data-toggle="collapse" data-parent="#styling"
+                                               href="#{{ md5($tab['title']) }}" aria-expanded="true"
+                                               aria-controls="colorsBackgrounds">
                                                 {{ $tab['title'] }}
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="{{ md5($tab['title']) }}" class="panel-collapse collapse in" role="tabpanel">
+                                    <div id="{{ md5($tab['title']) }}" class="panel-collapse collapse in"
+                                         role="tabpanel">
                                         <div class="panel-body">
                                             @foreach($tab['groups'] as $group)
-                                            <fieldset>
-                                                <legend>{{ issetReturn($group, 'title') }}</legend>
+                                                <fieldset>
+                                                    <legend>{{ issetReturn($group, 'title') }}</legend>
                                                 @foreach($group['fields'] as $field)
                                                     <!-- Set Data -->
-                                                    {{--*/ $fieldData = '' /*--}}
-                                                    @if(isset($tab['selector']))
-                                                        {{--*/  $fieldData .= ' data-el="'.$tab['selector'].'"' /*--}}
-                                                    @endif
-                                                    @if(isset($field['css']))
-                                                        {{--*/  $fieldData .= ' data-css="'.$field['css'].'"' /*--}}
-                                                    @endif
-
-                                                    <div class="form-group">
-                                                        <label>{{ $field['title'] }}:</label>
-                                                        @if($field['type'] == 'colorpicker')
-                                                        <input type="text" class="color-picker form-control" id="{{ $field['name'] }}" name="{{ $field['name'] }}" value="{{ isset($settings[$field['name']]) ? $settings[$field['name']] : '' }}" {!!$fieldData!!}/>
+                                                        {{--*/ $fieldData = '' /*--}}
+                                                        @if(isset($tab['selector']))
+                                                            {{--*/  $fieldData .= ' data-el="'.$tab['selector'].'"' /*--}}
+                                                        @endif
+                                                        @if(isset($field['css']))
+                                                            {{--*/  $fieldData .= ' data-css="'.$field['css'].'"' /*--}}
                                                         @endif
 
-                                                        @if($field['type'] == 'select')
-                                                        <select class="form-control" name="{{ $field['name'] }}">
-                                                            <option></option>
-                                                            @if($field['options'] == 'BBMenus')
-                                                                @foreach(BBGetMenus() as $menu)
-                                                                    <option value="{{$menu['id']}}"{!! BBSelectChoose($menu['id'], $settings[$field['name']])!!}>{{$menu['title']}}</option>
-                                                                @endforeach
-                                                            @elseif($field['options'] == 'BBMenus')
-
-                                                            @else
-                                                                @foreach($field['options'] as $option)
-                                                                    <option>{{$option}}</option>
-                                                                @endforeach
+                                                        <div class="form-group">
+                                                            <label>{{ $field['title'] }}:</label>
+                                                            @if($field['type'] == 'colorpicker')
+                                                                <input type="text" class="color-picker form-control"
+                                                                       id="{{ $field['name'] }}"
+                                                                       name="{{ $field['name'] }}"
+                                                                       value="{{ isset($settings[$field['name']]) ? $settings[$field['name']] : '' }}" {!!$fieldData!!}/>
                                                             @endif
-                                                        </select>
-                                                        @endif
 
-                                                        @if($field['type'] == 'text')
-                                                            <input type="text" class="form-control" id="{{ $field['name'] }}" name="{{ $field['name'] }}" value="{{ isset($settings[$field['name']]) ? $settings[$field['name']] : '' }}"{!!$fieldData!!}/>
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                            </fieldset>
+                                                            @if($field['type'] == 'select')
+                                                                <select class="form-control"
+                                                                        name="{{ $field['name'] }}">
+                                                                    <option></option>
+                                                                    @if($field['options'] == 'BBMenus')
+                                                                        @foreach(BBGetMenus() as $menu)
+                                                                            <option value="{{$menu['id']}}"{!! BBSelectChoose($menu['id'], $settings[$field['name']])!!}>{{$menu['title']}}</option>
+                                                                        @endforeach
+                                                                    @elseif($field['options'] == 'BBMenus')
+
+                                                                    @else
+                                                                        @foreach($field['options'] as $option)
+                                                                            <option>{{$option}}</option>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
+                                                            @endif
+
+                                                            @if($field['type'] == 'text')
+                                                                <input type="text" class="form-control"
+                                                                       id="{{ $field['name'] }}"
+                                                                       name="{{ $field['name'] }}"
+                                                                       value="{{ isset($settings[$field['name']]) ? $settings[$field['name']] : '' }}"{!!$fieldData!!}/>
+                                                            @endif
+                                                        </div>
+                                                    @endforeach
+                                                </fieldset>
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- END Accordion Group -->
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="customisation-footer">
-                        <button type="button" class="btn btn-primary save-variation">Save Template</button>
-                        <button type="button" class="btn btn-warning pull-right general-settings">General Settings</button>
+                        @endforeach
                     </div>
                 </div>
+                <div class="customisation-footer">
+                    <button type="button" class="btn btn-primary save-variation">Save Template</button>
+                    <button type="button" class="btn btn-warning pull-right general-settings">General Settings</button>
+                </div>
+            </div>
             {!! Form::close() !!}
             <div class="col-md-9 no-padding" id="template-area">
-                <iframe src="{{ url('/admin/templates/preview-template/'.$template_id.'/'.$variation_id) }}" width="100%" style="border:0;height:100vh;" id="template-frame"></iframe>
+                <iframe src="{{ url('/admin/templates/preview-template/'.$template_id.'/'.$variation_id) }}"
+                        width="100%" style="border:0;height:100vh;" id="template-frame"></iframe>
             </div>
         </div>
     </div>
@@ -246,10 +260,10 @@
 
     var settings = $('.customise-tools').data('settings');
 
-    $('.save-variation').click(function(){
+    $('.save-variation').click(function () {
         postAjax('/admin/templates/update-customiser', {
             variationSettings: JSON.stringify($('#customiser-form').serializeArray())
-        }, function(data){
+        }, function (data) {
             document.getElementById('template-frame').contentDocument.location.reload(true);
         });
     });
@@ -267,8 +281,8 @@
     $('.color-picker').colorPicker({
         renderCallback: function ($el) {
             var $targetEl = $el.data('el'),
-                    $targetCSS = $el.data('css'),
-                    colors = this.color.colors;
+                $targetCSS = $el.data('css'),
+                colors = this.color.colors;
 
 //            $($targetEl).css($targetCSS, '#' + colors.HEX);
         }
@@ -277,10 +291,10 @@
     // CSS styles
     $('.css').change(function () {
         var $el = $(this),
-                $targetEl = $el.data('el'),
-                $targetCSS = $el.data('css'),
-                $targetUnit = $el.data('unit'),
-                $value = $el.val();
+            $targetEl = $el.data('el'),
+            $targetCSS = $el.data('css'),
+            $targetUnit = $el.data('unit'),
+            $value = $el.val();
 
         $($targetEl).css($targetCSS, $value + $targetUnit);
     });
@@ -288,10 +302,10 @@
     // Numbered values
     $(document).on('input', 'input[type="range"]', function (e) {
         var $el = $(e.target),
-                $targetEl = $el.data('el'),
-                $targetCSS = $el.data('css'),
-                $targetUnit = $el.data('unit'),
-                $value = $el.val();
+            $targetEl = $el.data('el'),
+            $targetCSS = $el.data('css'),
+            $targetUnit = $el.data('unit'),
+            $value = $el.val();
 
         $el.parent('div').find('.slider-value').text(e.target.value);
 
@@ -302,7 +316,7 @@
     var editor = new MediumEditor('.editable');
 
     // Image upload
-    if($('.uploadable').length > 0){
+    if ($('.uploadable').length > 0) {
         var myDropzone = new Dropzone(".uploadable", {
             url: "/file/post",
             thumbnailWidth: 900,
@@ -346,7 +360,7 @@
 
                 // Fill widget input values
                 var widgetID = $(ui.draggable).parent('li').data('id');
-                $('[name='+$this.attr('id')+']').val(widgetID);
+                $('[name=' + $this.attr('id') + ']').val(widgetID);
             }
         });
 
@@ -355,22 +369,22 @@
         @endforeach
 
         // Show relevant tab
-        contents.find('{{implode(', ',$selectors)}}').click(function(){
+        contents.find('{{implode(', ',$selectors)}}').click(function () {
             var elClass = $(this).data('selector');
             $('.customiser-panel').hide();
-            $('[data-selector="'+elClass+'"]').show();
+            $('[data-selector="' + elClass + '"]').show();
         });
 
         // Add droppable areas to main form
-        contents.find('.droppable-area').each(function(){
+        contents.find('.droppable-area').each(function () {
             var $this = $(this);
-            $('[name='+$this.attr('id')+']').remove();
+            $('[name=' + $this.attr('id') + ']').remove();
             $('#customiser-form').append($('<input/>').attr('name', $this.attr('id')).attr('type', 'hidden'));
-            $('[name='+$this.attr('id')+']').val(settings[$this.attr('id')]);
+            $('[name=' + $this.attr('id') + ']').val(settings[$this.attr('id')]);
         });
     });
 
-    $('.general-settings').click(function(){
+    $('.general-settings').click(function () {
         $('.customiser-panel').hide();
     });
 
@@ -387,50 +401,50 @@
     &lt;script src=&quot;{{ asset('public/js/admin.js?v=6.1') }}&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
     &lt;style&gt;
     .droppable-area {
-        min-height: 120px;
-        border: 1px dashed #c0c0c0;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        position: relative;
+    min-height: 120px;
+    border: 1px dashed #c0c0c0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
     }
 
     .remove-widget {
-        font-size: 23px;
-        color: #CA0000;
-        position: absolute;
-        left: 5px;
-        top: -34px;
-        background: #000;
-        width: 35px;
-        height: 35px;
-        text-align: Center;
-        line-height: 33px;
-        border: 1px solid #dfdfdf;
-        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
-        padding-top: 5px;
+    font-size: 23px;
+    color: #CA0000;
+    position: absolute;
+    left: 5px;
+    top: -34px;
+    background: #000;
+    width: 35px;
+    height: 35px;
+    text-align: Center;
+    line-height: 33px;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
+    padding-top: 5px;
     }
     @foreach($customiser as $tab)
-        @if(isset($tab['selector']))
-        {{$tab['selector']}}{
-            position: relative;
-            min-height: 50px;
-        }
-        {{$tab['selector']}}:before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            background: rgba({{rand(0,255)}}, {{rand(0,255)}}, {{rand(0,255)}}, 0.23);
-            border: 1px dashed rgb(1, 163, 255);
-            cursor: pointer;
-            display:none;
-        }
-        {{$tab['selector']}}:hover:before{
-            display:block;
-        }
-        @endif
+    @if(isset($tab['selector']))
+    {{$tab['selector']}}{
+    position: relative;
+    min-height: 50px;
+    }
+    {{$tab['selector']}}:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba({{rand(0,255)}}, {{rand(0,255)}}, {{rand(0,255)}}, 0.23);
+    border: 1px dashed rgb(1, 163, 255);
+    cursor: pointer;
+    display:none;
+    }
+    {{$tab['selector']}}:hover:before{
+    display:block;
+    }
+    @endif
     @endforeach
     &lt;/style&gt;
 </script>

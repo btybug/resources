@@ -15,13 +15,13 @@
     {!! $htmlBody !!}
 </div>
 <div class="layoutCoresetting hide animated bounceInRight" data-settinglive="settings">
- <div class="container-fluid">
-  {!! Form::model($settings,['url'=>'/admin/templates/settings/'.$id, 'id'=>'add_custome_page','files'=>true]) !!}
-  {!! $htmlSettings !!}
-  <button class="btn btn-success hide" id="settings_savebtn" data-settingaction="save"> save</button>
-  {!! Form::close() !!}
+    <div class="container-fluid">
+        {!! Form::model($settings,['url'=>'/admin/templates/settings/'.$id, 'id'=>'add_custome_page','files'=>true]) !!}
+        {!! $htmlSettings !!}
+        <button class="btn btn-success hide" id="settings_savebtn" data-settingaction="save"> save</button>
+        {!! Form::close() !!}
 
-  </div>
+    </div>
 </div>
 
 @include('resources::assests.magicModal')
@@ -31,7 +31,6 @@
 {!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
 {!! HTML::script("js/UiElements/ui-preview-setting.js") !!}
 {!! HTML::script("js/UiElements/ui-settings.js") !!}
-
 
 
 @yield('JS')

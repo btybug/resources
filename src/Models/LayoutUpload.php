@@ -1,8 +1,9 @@
 <?php namespace Sahakavatar\Resources\Models;
 
+use File;
 use Illuminate\Http\Request;
 use Sahakavatar\Cms\Helpers\helpers;
-use Zipper,File;
+use Zipper;
 
 /**
  * Class ThUpload
@@ -110,7 +111,7 @@ class LayoutUpload
     public function extract()
     {
         $fileName = $this->fileNmae;
-        $this->generatedName = $fileName.'_'.uniqid();
+        $this->generatedName = $fileName . '_' . uniqid();
         File::makeDirectory($this->uf . $this->generatedName);
         Zipper::make($this->uf . "/" . $fileName . self::ZIP)->extractTo($this->uf . $this->generatedName . '/');
     }
@@ -124,12 +125,12 @@ class LayoutUpload
     {
         if (File::exists($this->uf . $folder . '/' . 'config.json')) {
             $file = $this->uf . $folder . '/' . 'config.json';
-            $response =  $this->validate($file, $folder);
+            $response = $this->validate($file, $folder);
 
-            if($response['error'])
+            if ($response['error'])
                 return $response;
 
-            $this->dir = config('paths.backend_layouts'). '/' . $response['data']['folder'];
+            $this->dir = config('paths.backend_layouts') . '/' . $response['data']['folder'];
 
             File::copyDirectory($this->uf . $folder, $this->dir);
 
@@ -137,17 +138,17 @@ class LayoutUpload
         } else {
             if (File::exists($this->uf . $folder . '/' . $name . '/' . 'config.json')) {
                 $file = $this->uf . $folder . '/' . $name . '/' . 'config.json';
-                $response =  $this->validate($file, $folder);
+                $response = $this->validate($file, $folder);
 
-                if($response['error'])
+                if ($response['error'])
                     return $response;
 
                 $this->dir = config('paths.backend_layouts') . '/' . $response['data']['folder'];
 
-                File::copyDirectory($this->uf . $folder. '/' . $name, $this->dir);
+                File::copyDirectory($this->uf . $folder . '/' . $name, $this->dir);
 
                 return $response;
-            }else{
+            } else {
                 return ['error' => 'true', 'message' => 'config.json file is not exists'];
             }
         }
@@ -179,10 +180,85 @@ class LayoutUpload
             //generate Settings
             $this->generateSettings($conf);
 
-            return ['data' => $conf,'code' => '200', 'error' => false];
+            return ['data' => $conf, 'code' => '200', 'error' => false];
         }
 
         return ['message' => 'Json file is empty !!!', 'code' => '404', 'error' => true];
+    }
+
+    /**
+     * @param $conf
+     */
+    private function generateLayout($conf)
+    {
+        $pathHtml = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['layout'] . '.html';
+        if (File::exists($pathHtml)) {
+            $fileReq = File::get($pathHtml);
+            $body = helpers::between('<body>', '</body>', $fileReq);
+
+            $body = str_replace('<!--content-->', ' @yield(\'main_content\')', $body);
+            $css = '@push("css")' . "\r\n";
+            if (isset($conf['css'])) {
+                if (count($conf['css'])) {
+                    foreach ($conf['css'] as $cs) {
+                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/css/' . $cs)) {
+                            $css .= '{!! HTML::style("/resources/views/ContentLayouts/' . $conf['folder'] . '/css/' . $cs . '") !!}' . "\r\n";
+                        }
+                    }
+                    $css .= '@endpush' . "\r\n";
+                }
+            }
+            $js = '@push("javascript")' . "\r\n";
+            if (isset($conf['js'])) {
+                if (count($conf['js'])) {
+                    foreach ($conf['js'] as $j) {
+                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/js/' . $j)) {
+                            $js .= '{!! HTML::script("/resources/views/ContentLayouts/' . $conf['folder'] . '/js/' . $j . '") !!}' . "\r\n";
+                        }
+                    }
+                    $js .= "@endpush";
+                }
+            }
+            $bladePath = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['layout'] . '.blade.php';
+            $body = $body . "\r\n" . $css . "\r\n" . $js;
+            File::put($bladePath, $body);
+        }
+    }
+
+    private function generateSettings($conf)
+    {
+        $pathHtml = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['settings']['file'] . '.html';
+        if (File::exists($pathHtml)) {
+            $fileReq = File::get($pathHtml);
+            $body = helpers::between('<body>', '</body>', $fileReq);
+
+            $css = '@push("css")' . "\r\n";
+            if (isset($conf['css'])) {
+                if (count($conf['css'])) {
+                    foreach ($conf['css'] as $cs) {
+                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/css/' . $cs)) {
+                            $css .= '{!! HTML::style("/resources/views/ContentLayouts/' . $conf['folder'] . '/css/' . $cs . '") !!}' . "\r\n";
+                        }
+                    }
+                    $css .= '@endpush' . "\r\n";
+                }
+            }
+            $js = '@push("javascript")' . "\r\n";
+            if (isset($conf['js'])) {
+                if (count($conf['js'])) {
+                    foreach ($conf['js'] as $j) {
+                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/js/' . $j)) {
+                            $js .= '{!! HTML::script("/resources/views/ContentLayouts/' . $conf['folder'] . '/js/' . $j . '") !!}' . "\r\n";
+                        }
+                    }
+                    $js .= "@endpush";
+                }
+            }
+
+            $bladePath = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['settings']['file'] . '.blade.php';
+            $body = $body . "\r\n" . $css . "\r\n" . $js;
+            File::put($bladePath, $body);
+        }
     }
 
     /**
@@ -192,80 +268,6 @@ class LayoutUpload
     {
         File::deleteDirectory($this->uf . $fileName);
         File::delete($this->uf . $fileName . self::ZIP);
-    }
-
-    /**
-     * @param $conf
-     */
-    private function generateLayout($conf)
-    {
-        $pathHtml=$this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['layout'] . '.html';
-        if (File::exists($pathHtml)) {
-            $fileReq = File::get($pathHtml);
-            $body = helpers::between('<body>', '</body>', $fileReq);
-
-            $body = str_replace('<!--content-->', ' @yield(\'main_content\')', $body);
-            $css = '@push("css")'."\r\n";
-            if (isset($conf['css'])) {
-                if (count($conf['css'])) {
-                    foreach ($conf['css'] as $cs) {
-                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/css/' . $cs)) {
-                            $css .= '{!! HTML::style("/resources/views/ContentLayouts/' . $conf['folder'] . '/css/' . $cs . '") !!}'."\r\n";
-                        }
-                    }
-                    $css .= '@endpush'."\r\n";
-                }
-            }
-            $js = '@push("javascript")'."\r\n";
-            if (isset($conf['js'])) {
-                if (count($conf['js'])) {
-                    foreach ($conf['js'] as $j) {
-                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/js/' . $j)) {
-                            $js .= '{!! HTML::script("/resources/views/ContentLayouts/' . $conf['folder'] . '/js/' . $j . '") !!}'."\r\n";
-                        }
-                    }
-                    $js.="@endpush";
-                }
-            }
-            $bladePath = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['layout'] . '.blade.php';
-            $body=$body."\r\n".$css."\r\n".$js;
-            File::put($bladePath, $body);
-        }
-    }
-
-    private function generateSettings($conf){
-        $pathHtml=$this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['settings']['file'] . '.html';
-        if (File::exists($pathHtml)) {
-            $fileReq = File::get($pathHtml);
-            $body = helpers::between('<body>', '</body>', $fileReq);
-
-            $css = '@push("css")'."\r\n";
-            if (isset($conf['css'])) {
-                if (count($conf['css'])) {
-                    foreach ($conf['css'] as $cs) {
-                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/css/' . $cs)) {
-                            $css .= '{!! HTML::style("/resources/views/ContentLayouts/' . $conf['folder'] . '/css/' . $cs . '") !!}'."\r\n";
-                        }
-                    }
-                    $css .= '@endpush'."\r\n";
-                }
-            }
-            $js = '@push("javascript")'."\r\n";
-            if (isset($conf['js'])) {
-                if (count($conf['js'])) {
-                    foreach ($conf['js'] as $j) {
-                        if (File::exists($this->uf . $conf['slug'] . '/' . $conf['folder'] . '/js/' . $j)) {
-                            $js .= '{!! HTML::script("/resources/views/ContentLayouts/' . $conf['folder'] . '/js/' . $j . '") !!}'."\r\n";
-                        }
-                    }
-                    $js.="@endpush";
-                }
-            }
-
-            $bladePath = $this->uf . $conf['slug'] . '/' . $conf['folder'] . '/' . $conf['settings']['file'] . '.blade.php';
-            $body=$body."\r\n".$css."\r\n".$js;
-            File::put($bladePath, $body);
-        }
     }
 
 }

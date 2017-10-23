@@ -1,12 +1,11 @@
 <?php namespace Sahakavatar\Resources\Models;
 
-use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\Caster\ExceptionCaster;
-use Sahakavatar\Cms\Helpers\helpers;
 use App\Models\MenuData;
+use File;
+use Illuminate\Http\Request;
+use Sahakavatar\Cms\Helpers\helpers;
 use Sahakavatar\Cms\Models\Widgets;
-use Zipper,
-    File;
+use Zipper;
 
 
 /**
@@ -128,14 +127,14 @@ class UiUpload
     {
         if (File::exists($this->uf . $folder . '/' . 'config.json')) {
             $file = $this->uf . $folder . '/' . 'config.json';
-            $response =  $this->validate($file, $folder);
-            if($response['error'])
+            $response = $this->validate($file, $folder);
+            if ($response['error'])
                 return $response;
 
-            if(isset($response['data']['main_type'])){
-                $this->dir = config('paths.ui_elements_path') . $response['data']['main_type'] .'/'. $response['data']['type'] .'/'.$folder;
-            }else{
-                $this->dir = config('paths.ui_elements_path'). $response['data']['type'].'/'.$folder;
+            if (isset($response['data']['main_type'])) {
+                $this->dir = config('paths.ui_elements_path') . $response['data']['main_type'] . '/' . $response['data']['type'] . '/' . $folder;
+            } else {
+                $this->dir = config('paths.ui_elements_path') . $response['data']['type'] . '/' . $folder;
             }
 
             File::copyDirectory($this->uf . $folder, $this->dir);
@@ -144,17 +143,17 @@ class UiUpload
         } else {
             if (File::exists($this->uf . $folder . '/' . $name . '/' . 'config.json')) {
                 $file = $this->uf . $folder . '/' . $name . '/' . 'config.json';
-                $response =  $this->validate($file, $folder);
-                if($response['error'])
+                $response = $this->validate($file, $folder);
+                if ($response['error'])
                     return $response;
 
-                if(isset($response['data']['main_type'])){
-                    $this->dir = config('paths.ui_elements_path'). $response['data']['main_type'] .'/'. $response['data']['type'] .'/'.$folder;
-                }else{
-                    $this->dir = config('paths.ui_elements_path'). $response['data']['type'].'/'.$folder;
+                if (isset($response['data']['main_type'])) {
+                    $this->dir = config('paths.ui_elements_path') . $response['data']['main_type'] . '/' . $response['data']['type'] . '/' . $folder;
+                } else {
+                    $this->dir = config('paths.ui_elements_path') . $response['data']['type'] . '/' . $folder;
                 }
 
-                File::copyDirectory($this->uf . $folder. '/' . $name, $this->dir);
+                File::copyDirectory($this->uf . $folder . '/' . $name, $this->dir);
 
                 return $response;
             }
@@ -179,7 +178,7 @@ class UiUpload
             $conf['slug'] = (string)$key;
             $json = json_encode($conf, true);
             File::put($file, $json);
-            return ['data' => $conf,'code' => '200', 'error' => false];
+            return ['data' => $conf, 'code' => '200', 'error' => false];
         }
 
         return ['message' => 'Json file is empty !!!', 'code' => '404', 'error' => true];
@@ -193,14 +192,14 @@ class UiUpload
     {
         $variation_path = $this->dir . '/variations';
         if (File::isDirectory($variation_path)) {
-            if($files = File::allFiles($variation_path)){
+            if ($files = File::allFiles($variation_path)) {
                 foreach ($files as $file) {
                     if (File::extension($file) == 'json') {
                         $json = File::get($file);
                         if ($json) {
                             $json = json_decode($json, true);
-                            $json['id'] = $data['slug'] . '.'. uniqid();
-                            File::put($variation_path . '/' . $json['id'] . '.json', json_encode($json,true));
+                            $json['id'] = $data['slug'] . '.' . uniqid();
+                            File::put($variation_path . '/' . $json['id'] . '.json', json_encode($json, true));
                             File::delete($file);
                         }
                     }
@@ -209,6 +208,6 @@ class UiUpload
             }
         }
         File::makeDirectory($variation_path);
-        Widgets::find($data['slug'])->makeVariation(['title'=> 'main variation'])->save();
+        Widgets::find($data['slug'])->makeVariation(['title' => 'main variation'])->save();
     }
 }

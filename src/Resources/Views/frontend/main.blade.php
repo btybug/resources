@@ -1,8 +1,8 @@
 @extends('cms::layouts.mTabs',['index'=>'frontend'])
 @section('tab')
-<div role="tabpanel" class="m-t-10" id="main">
-    <div class="col-md-9">
-        {!! Form::model($system,['class' => 'form-horizontal','files' => true]) !!}
+    <div role="tabpanel" class="m-t-10" id="main">
+        <div class="col-md-9">
+            {!! Form::model($system,['class' => 'form-horizontal','files' => true]) !!}
             <fieldset>
                 <!-- Text input-->
                 <div class="form-group">
@@ -67,28 +67,29 @@
                 </div>
 
             </fieldset>
-       {!! Form::close() !!}
-        <div class="modal fade" id="magic-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            {{--{!! Form::open(['url'=>'/admin/backend/theme-edit/live-save', 'id'=>'magic-form']) !!}--}}
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        {{--{!! Form::submit('Save',['class' => 'btn btn-success pull-right m-r-10']) !!}--}}
-                        <h4 class="modal-title" id="myModalLabel"></h4>
-                    </div>
-                    <div class="modal-body" style="min-height: 500px;">
+            {!! Form::close() !!}
+            <div class="modal fade" id="magic-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                {{--{!! Form::open(['url'=>'/admin/backend/theme-edit/live-save', 'id'=>'magic-form']) !!}--}}
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            {{--{!! Form::submit('Save',['class' => 'btn btn-success pull-right m-r-10']) !!}--}}
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" style="min-height: 500px;">
 
-                        <div id="magic-body">
+                            <div id="magic-body">
 
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{--{!! Form::close() !!}--}}
             </div>
-            {{--{!! Form::close() !!}--}}
         </div>
     </div>
-</div>
 @stop
 @section('JS')
     {!! HTML::script("/resources/assets/js/UiElements/bb_styles.js?v.5") !!}

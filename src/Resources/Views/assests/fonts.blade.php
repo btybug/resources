@@ -1,10 +1,11 @@
 @extends('cms::layouts.mTabs',['index'=>'assets'])
-        <!-- Nav tabs -->
+<!-- Nav tabs -->
 @section('tab')
     <div class="row">
         <div class="col-sm-12 p-0">
 
-            <button class="btn btn-sm btn-primary pull-right m-b-10" type="button" data-toggle="modal" data-target="#uploadfile">
+            <button class="btn btn-sm btn-primary pull-right m-b-10" type="button" data-toggle="modal"
+                    data-target="#uploadfile">
                 <i class="fa fa-upload"></i>
                 &nbsp; Upload Font Package
             </button>
@@ -22,10 +23,13 @@
                     <tr>
                         <td>{{$asset['title']}}</td>
                         <td>
-                            <a href="/admin/resources/core_assest/font-preview/{{$asset['folder']}}" class="btn btn-default btn-info btn-xs">
+                            <a href="/admin/resources/core_assest/font-preview/{{$asset['folder']}}"
+                               class="btn btn-default btn-info btn-xs">
                                 &nbsp;<i class="fa fa-eye"></i>&nbsp;
                             </a>
-                            <a href="/admin/resources/core_assest/delete-font/{{$asset['folder']}}" class="btn btn-danger btn-primary btn-xs" onclick="return confirm('Are you sure to delete')">
+                            <a href="/admin/resources/core_assest/delete-font/{{$asset['folder']}}"
+                               class="btn btn-danger btn-primary btn-xs"
+                               onclick="return confirm('Are you sure to delete')">
                                 &nbsp;<i class="fa fa-trash"></i> &nbsp;
                             </a>
                         </td>
@@ -40,7 +44,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Upload</h4>
                 </div>
                 <div class="modal-body"> {!! Form::open(['url'=>'/admin/resources/core_assest/uploadfont','class'=>'dropzone', 'id'=>'my-awesome-dropzone']) !!}
@@ -63,9 +68,9 @@
 
         Dropzone.options.myAwesomeDropzone = {
 
-            init: function() {
+            init: function () {
 
-                this.on("success", function(file) {
+                this.on("success", function (file) {
 
                     location.reload();
 

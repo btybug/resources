@@ -1,6 +1,7 @@
 <?php
-use App\Modules\Resources\Models\Classes;
+
 use App\Modules\Resources\Assest;
+use App\Modules\Resources\Models\Classes;
 
 
 if (!function_exists('BBClasses')) {
@@ -76,7 +77,7 @@ if (!function_exists('BBClassVariationsList')) {
         $result = null;
         if ($id) {
             $rs = Classes::find($id);
-            $result = $rs->variations->lists('title','id');
+            $result = $rs->variations->lists('title', 'id');
         }
         return $result->toJson();
     }

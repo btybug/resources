@@ -1,13 +1,16 @@
 {
-    "name": "Resources",
-    "slug": "resources",
-    "type":"core",
-    "author":"Abokamal",
-    "title":"Resources",
-    "author_site":"http://dev.bootydev.co.uk/",
-    "version": "1.0",
-    "description": "This is the description for the Resources module.",
-    "created_at": "05-11-2013 12:00",
-    "tables":["resources","styles","style_items"]
-
+  "name": "Resources",
+  "slug": "resources",
+  "type": "core",
+  "author": "Abokamal",
+  "title": "Resources",
+  "author_site": "http://dev.bootydev.co.uk/",
+  "version": "1.0",
+  "description": "This is the description for the Resources module.",
+  "created_at": "05-11-2013 12:00",
+  "tables": [
+    "resources",
+    "styles",
+    "style_items"
+  ]
 }

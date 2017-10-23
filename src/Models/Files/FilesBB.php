@@ -10,10 +10,10 @@
  */
 
 namespace Sahakavatar\Resources\Models\Files;
-use Sahakavatar\Cms\Models\Eloquent\Abstractions\TplModel;
-use Sahakavatar\Cms\Models\Templates\Units;
+
 use App\Modules\Resources\Models\Files\traits\FilesPreview;
-use File;
+use Sahakavatar\Cms\Models\Eloquent\Abstractions\TplModel;
+
 /**
  * Created by PhpStorm.
  * User: Comp1
@@ -26,8 +26,8 @@ class FilesBB extends TplModel
 
     public function __construct()
     {
-        $this->dir=config('paths.files_path');
-        $this->json=config('paths.files_path').'files.json';
+        $this->dir = config('paths.files_path');
+        $this->json = config('paths.files_path') . 'files.json';
         $this->uf = base_path(config('paths.ui_elements_uplaod'));
     }
 }
