@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Http\Controllers;
+<?php namespace Btybug\Resources\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\Files\FilesBB;

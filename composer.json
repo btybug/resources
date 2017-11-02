@@ -1,5 +1,5 @@
 {
-    "name": "sahak.avatar/resources",
+    "name": "btybug/resources",
     "authors": [
         {
             "name": "Eduard",
@@ -10,7 +10,7 @@
     "require": {},
 	"autoload": {
         "psr-4": {
-            "Sahakavatar\\Resources\\": "src/"
+            "Btybug\\Resources\\": "src/"
         }
     }
 }

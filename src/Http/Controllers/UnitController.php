@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Http\Controllers;
+<?php namespace Btybug\Resources\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\Files\FileUpload;
@@ -22,7 +22,7 @@ class UnitController extends Controller
 
     private $types;
 
-    public function __construct(\Sahakavatar\Modules\Models\Plugins\Gears\Models\UnitUpload $unitUpload, validateUpl $validateUpl)
+    public function __construct(\Btybug\Modules\Models\Plugins\Gears\Models\UnitUpload $unitUpload, validateUpl $validateUpl)
     {
         $this->upload = new $unitUpload;
         $this->validateUpl = new $validateUpl;

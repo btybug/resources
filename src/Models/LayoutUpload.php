@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Models;
+<?php namespace Btybug\Resources\Models;
 
 use File;
 use Illuminate\Http\Request;

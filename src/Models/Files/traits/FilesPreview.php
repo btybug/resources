@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\Resources\Models\Files\traits;
+namespace Btybug\Resources\Models\Files\traits;
 /**
  * Created by PhpStorm.
  * User: shojan

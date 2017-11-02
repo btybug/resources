@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\Resources\Http\Controllers;
+namespace Btybug\Resources\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\Assest;

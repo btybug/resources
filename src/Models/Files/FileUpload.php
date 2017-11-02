@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\Resources\Models\Files;
+namespace Btybug\Resources\Models\Files;
 
 use File;
 use Sahakavatar\Cms\Models\Templates\Units;

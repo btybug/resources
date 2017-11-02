@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\Resources\Http\Controllers;
+namespace Btybug\Resources\Http\Controllers;
 
 use App\Modules\Resources\Models\Styles;
 use App\Modules\Resources\Models\TemplateVariations as TemplateVariations;

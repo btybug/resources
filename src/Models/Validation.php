@@ -1,6 +1,6 @@
 <?php
 
-namespace Sahakavatar\Resources\Models;
+namespace Btybug\Resources\Models;
 
 use App\Modules\Packeges\Interfases\vInterfase;
 use File;

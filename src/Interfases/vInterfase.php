@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Interfases;
+<?php namespace Btybug\Resources\Interfases;
 
 /**
  * Interface vInterfase

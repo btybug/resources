@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Http\Controllers\Api;
+<?php namespace Btybug\Resources\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Resources\Models\Template as Template;

@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Models;
+<?php namespace Btybug\Resources\Models;
 
 use App\Models\MenuData;
 use File;

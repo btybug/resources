@@ -1,4 +1,4 @@
-<?php namespace Sahakavatar\Resources\Models\Forms\Abstracts;
+<?php namespace Btybug\Resources\Models\Forms\Abstracts;
 
 /**
  * Created by PhpStorm.

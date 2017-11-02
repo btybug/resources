@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'themes_assest'])
+@extends('btybug::layouts.mTabs',['index'=>'themes_assest'])
 
 @section('parag')
     {!! Breadcrumbs::render('core_css') !!}

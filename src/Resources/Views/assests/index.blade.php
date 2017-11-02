@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'assets'])
+@extends('btybug::layouts.mTabs',['index'=>'assets'])
 
 @section('tab')
     {{--{!! Breadcrumbs::render('core_assets') !!}--}}

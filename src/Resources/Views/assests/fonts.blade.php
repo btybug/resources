@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'assets'])
+@extends('btybug::layouts.mTabs',['index'=>'assets'])
 <!-- Nav tabs -->
 @section('tab')
     <div class="row">

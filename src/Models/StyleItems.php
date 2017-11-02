@@ -9,7 +9,7 @@
  *
  */
 
-namespace Sahakavatar\Resources\Models;
+namespace Btybug\Resources\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Sahakavatar\Cms\Helpers\helpers;

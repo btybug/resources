@@ -1,4 +1,4 @@
-@extends('cms::layouts.mTabs',['index'=>'classes'])
+@extends('btybug::layouts.mTabs',['index'=>'classes'])
 @section('parag')
     {!! Breadcrumbs::render('classes_text') !!}
 @stop
