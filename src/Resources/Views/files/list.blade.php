@@ -1,4 +1,4 @@
-@extends('btybug::layouts.mTabs',['index'=>'assets'])
+@extends('cms::layouts.mTabs',['index'=>'assets'])
 <!-- Nav tabs -->
 @section('tab')
     {!! HTML::style('app/Modules/Resources/Resources/assets/css/new-store.css') !!}
@@ -117,8 +117,8 @@
     </style>
 @stop
 @section('JS')
-    {!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
-    {!! HTML::script('js/dropzone/js/dropzone.js') !!}
+    {!! HTML::script("public/js/UiElements/bb_styles.js?v.5") !!}
+    {!! HTML::script('public/js/dropzone/js/dropzone.js') !!}
     <script>
         Dropzone.options.myAwesomeDropzone = {
             init: function () {

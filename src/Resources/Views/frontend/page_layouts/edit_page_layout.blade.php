@@ -14,13 +14,13 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
-    {!! HTML::style("/css/bootstrap.css") !!}
-    {!! HTML::style("/js/font-awesome/css/font-awesome.min.css") !!}
+    {!! HTML::style("public/css/bootstrap.css") !!}
+    {!! HTML::style("public/js/font-awesome/css/font-awesome.min.css") !!}
     {!! HTML::style("/resources/resources/js/jqueryui/css/jquery-ui.min.css") !!}
-    {!! HTML::style("/css/core_styles.css") !!}
-    {!! HTML::script("js/jquery-2.1.4.min.js") !!}
-    {!! HTML::script("js/jqueryui/js/jquery-2.1.4.min.js") !!}
-    {!! HTML::script("js/bootstrap.min.js") !!}
+    {!! HTML::style("public/css/core_styles.css") !!}
+    {!! HTML::script("public/js/jquery-2.1.4.min.js") !!}
+    {!! HTML::script("public/js/jqueryui/js/jquery-2.1.4.min.js") !!}
+    {!! HTML::script("public/js/bootstrap.min.js") !!}
     {{ csrf_field() }}
     <style data-generatedcss="csss"></style>
     <style data-generatedcss="extra"></style>
@@ -47,8 +47,8 @@
     </div>
 </div>
 
-{!! HTML::style("/js/animate/css/animate.css") !!}
-{!! HTML::style("/css/preview-template.css") !!}
-{!! HTML::script("js/UiElements/ui-previewlayout.js") !!}
+{!! HTML::style("public/js/animate/css/animate.css") !!}
+{!! HTML::style("public/css/preview-template.css") !!}
+{!! HTML::script("public/js/UiElements/ui-previewlayout.js") !!}
 </body>
 </html>

@@ -9,7 +9,7 @@ use App\Modules\Resources\Models\StyleItems;
 use App\Repositories\TermRepository as Terms;
 use File;
 use Illuminate\Http\Request;
-use Sahakavatar\Cms\Helpers\helpers;
+use Btybug\Cms\Helpers\helpers;
 use Session;
 use Zipper;
 

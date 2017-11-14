@@ -100,11 +100,11 @@
 @stop
 
 @section('CSS')
-    {!! HTML::style('js/bootstrap-editable/css/bootstrap-editable.css') !!}
+    {!! HTML::style('public/js/bootstrap-editable/css/bootstrap-editable.css') !!}
 @stop
 
 @section('JS')
-    {!! HTML::script('js/bootstrap-editable/js/bootstrap-editable.min.js') !!}
+    {!! HTML::script('public/js/bootstrap-editable/js/bootstrap-editable.min.js') !!}
     <script>
         $('#new-variation').click(function () {
             $('.new-variation').removeClass('hide');

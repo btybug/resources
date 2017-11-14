@@ -1,13 +1,13 @@
-{!! HTML::script("js/jquery-2.1.4.min.js") !!}
-{!! HTML::script("js/jqueryui/js/jquery-ui.min.js") !!}
-{!! HTML::script("js/bootstrap.min.js") !!}
-{!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
-{!! HTML::style("/css/bootstrap.css") !!}
-{!! HTML::style("/js/font-awesome/css/font-awesome.min.css") !!}
-{!! HTML::style("/js/jqueryui/css/jquery-ui.min.css") !!}
-{!! HTML::style('css/preview-template.css') !!}
-{!! HTML::style("/css/core_styles.css") !!}
-{!! HTML::style("/css/builder-tool.css") !!}
+{!! HTML::script("public/js/jquery-2.1.4.min.js") !!}
+{!! HTML::script("public/js/jqueryui/js/jquery-ui.min.js") !!}
+{!! HTML::script("public/js/bootstrap.min.js") !!}
+{!! HTML::script("public/js/UiElements/bb_styles.js?v.5") !!}
+{!! HTML::style("public/css/bootstrap.css") !!}
+{!! HTML::style("public/js/font-awesome/css/font-awesome.min.css") !!}
+{!! HTML::style("public/js/jqueryui/css/jquery-ui.min.css") !!}
+{!! HTML::style('public/css/preview-template.css') !!}
+{!! HTML::style("public/css/core_styles.css") !!}
+{!! HTML::style("public/css/builder-tool.css") !!}
 
 
 {!! csrf_field() !!}
@@ -25,12 +25,12 @@
 </div>
 
 @include('resources::assests.magicModal')
-{!! HTML::script("js/jquery-2.1.4.min.js") !!}
-{!! HTML::script("js/jqueryui/js/jquery-ui.min.js") !!}
-{!! HTML::script("js/bootstrap.min.js") !!}
-{!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
-{!! HTML::script("js/UiElements/ui-preview-setting.js") !!}
-{!! HTML::script("js/UiElements/ui-settings.js") !!}
+{!! HTML::script("public/js/jquery-2.1.4.min.js") !!}
+{!! HTML::script("public/js/jqueryui/js/jquery-ui.min.js") !!}
+{!! HTML::script("public/js/bootstrap.min.js") !!}
+{!! HTML::script("public/js/UiElements/bb_styles.js?v.5") !!}
+{!! HTML::script("public/js/UiElements/ui-preview-setting.js") !!}
+{!! HTML::script("public/js/UiElements/ui-settings.js") !!}
 
 
 @yield('JS')

@@ -138,7 +138,7 @@
     </style>
 @stop
 @section('JS')
-    {!! HTML::script('js/dropzone/js/dropzone.js') !!}
+    {!! HTML::script('public/js/dropzone/js/dropzone.js') !!}
     <script>
         Dropzone.options.myAwesomeDropzone = {
             init: function () {

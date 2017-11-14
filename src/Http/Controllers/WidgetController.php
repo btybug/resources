@@ -12,7 +12,7 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Resources;
-use Sahakavatar\Cms\Models\Widgets;
+use Btybug\Cms\Models\Widgets;
 use Session;
 use View;
 use Zipper;

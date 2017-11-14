@@ -90,7 +90,7 @@
     <style data-preview="css"></style>
 @stop
 @section('JS')
-    {!! HTML::script('js/dropzone/js/dropzone.js') !!}
+    {!! HTML::script('public/js/dropzone/js/dropzone.js') !!}
     {!! HTML::script("/resources/assets/js/code_editor/edit_area_full.js") !!}
     {!! HTML::script("https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js") !!}
     <script>

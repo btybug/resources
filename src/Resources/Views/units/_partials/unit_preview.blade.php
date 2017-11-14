@@ -1,12 +1,12 @@
-{!! HTML::script('css/bootstrap/css/bootstrap.min.js') !!}
+{!! HTML::script('public/css/bootstrap/css/bootstrap.min.js') !!}
 
-{!! HTML::style("css/font-awesome/css/font-awesome.min.css") !!}
-{!! HTML::script('js/jquery-2.1.4.min.js') !!}
-{!! HTML::script('css/bootstrap/js/bootstrap.min.js') !!}
-{!! HTML::style("css/animate.css") !!}
-{!! HTML::style("css/preview-template.css") !!}
-{!! HTML::style("css/core_styles.css") !!}
-{!! HTML::style("css/builder-tool.css") !!}
+{!! HTML::style("public/css/font-awesome/css/font-awesome.min.css") !!}
+{!! HTML::script('public/js/jquery-2.1.4.min.js') !!}
+{!! HTML::script('public/css/bootstrap/js/bootstrap.min.js') !!}
+{!! HTML::style("public/css/animate.css") !!}
+{!! HTML::style("public/css/preview-template.css") !!}
+{!! HTML::style("public/css/core_styles.css") !!}
+{!! HTML::style("public/css/builder-tool.css") !!}
 
 <body>
 {!! csrf_field() !!}
@@ -36,6 +36,6 @@
 <button data-settingaction="save" class="hide" id="settings_savebtn"></button>
 <input type="hidden" id="hidden_data" value='{!!$settings_json!!}'>
 <body>
-{!! HTML::script("js/UiElements/bb_styles.js?v.5") !!}
-{!! HTML::script("js/UiElements/ui-preview-setting.js") !!}
-{!! HTML::script("js/UiElements/ui-settings.js") !!}
+{!! HTML::script("public/js/UiElements/bb_styles.js?v.5") !!}
+{!! HTML::script("public/js/UiElements/ui-preview-setting.js") !!}
+{!! HTML::script("public/js/UiElements/ui-settings.js") !!}
